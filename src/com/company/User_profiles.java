@@ -34,7 +34,7 @@ public class User_profiles {
 
     public one_profile index (int index){
         one_profile buff_profile = profiles.get(index);
-        return new one_profile(buff_profile.name_profile, buff_profile.color_profile, buff_profile.work_timers, buff_profile.rest_timer);
+        return new one_profile(buff_profile.name_profile, buff_profile.color_profile, buff_profile.work_timer, buff_profile.rest_timer);
 
     }
 
@@ -64,7 +64,7 @@ public class User_profiles {
             {
                 String string_to_file = "name_profile: " + G.name_profile + "\n" +
                         "color_profile: " + G.color_profile[0] + " " + G.color_profile[1] + " " + G.color_profile[2] + " " + "\n" +
-                        "work_timers: " + G.work_timers + "\n" +
+                        "work_timer: " + G.work_timer + "\n" +
                         "rest_timer: " + G.rest_timer + "\n\n"; // формируем запись о новом профиле
                 writer.write(string_to_file);
                 writer.flush();
@@ -103,7 +103,7 @@ public class User_profiles {
                 line = scan.nextLine();
                 if (line.isEmpty()){ //если блок кончился
                     if (buff_profile.isFull()){
-                        profiles.add(new one_profile(buff_profile.name_profile, buff_profile.color_profile, buff_profile.work_timers, buff_profile.rest_timer));
+                        profiles.add(new one_profile(buff_profile.name_profile, buff_profile.color_profile, buff_profile.work_timer, buff_profile.rest_timer));
                     }
                         // тут надо вставить буфер в список
                     buff_profile.clear();
@@ -121,8 +121,8 @@ public class User_profiles {
                                     buff_profile.color_profile[2] = Integer.parseInt(words[3]);
                                 }
                                 break;
-                            case "work_timers:":
-                                buff_profile.work_timers = Integer.parseInt(words[1]);
+                            case "work_timer:":
+                                buff_profile.work_timer = Integer.parseInt(words[1]);
                                 break;
                             case "rest_timer:":
                                 buff_profile.rest_timer = Integer.parseInt(words[1]);
@@ -144,7 +144,7 @@ public class User_profiles {
     public boolean add_new_profile(one_profile G){ // Добавить новый профиль
         String string_to_file = "name_profile: " + G.name_profile + "\n" +
                 "color_profile: " + G.color_profile[0] + " " + G.color_profile[1] + " " + G.color_profile[2] + " " + "\n" +
-                "work_timers: " + G.work_timers + "\n" +
+                "work_timer: " + G.work_timer + "\n" +
                 "rest_timer: " + G.rest_timer + "\n\n"; // формируем запись о новом профиле
         try(FileWriter writer = new FileWriter(path_to_profile + "profiles.txt", true)) //открываем файл для записи
         {
