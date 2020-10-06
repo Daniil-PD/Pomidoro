@@ -1,10 +1,14 @@
 package com.company;
 
 
+
 public class Main {
 
     public static void main(String[] args) {
 
+        final boolean debag_mode = java.util.Arrays.asList(args).contains("-L");
+
+        if (debag_mode) System.out.println("Start");
         User_profiles profiles = new User_profiles();
         int[] arr = new int[3];
         arr[0] = 31;
@@ -19,18 +23,10 @@ public class Main {
             System.out.println(profile);
         }
 
-        profiles.delite_index(0);
-        profiles.delite_index(0);
-        profiles.delite_index(0);
-        profiles.delite_index(0);
-        profiles.delite_index(0);
-        profiles.delite_index(0);
+
         System.out.println();
 
-        for (int i = 0; i < profiles.size(); i++){
-            profile = profiles.index(i);
-            System.out.println(profile);
-        }
+
 
 
 

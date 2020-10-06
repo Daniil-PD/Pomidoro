@@ -1,0 +1,10 @@
+name_profile: profile8
+color_profile: 31 255 10 
+work_timer: 25
+rest_timer: 10
+
+name_profile: profile8
+color_profile: 31 255 10 
+work_timer: 25
+rest_timer: 10
+
