@@ -1,6 +1,8 @@
 package com.company;
 
 
+import java.util.Arrays;
+
 public class one_profile {
     //Просто контенер для хранения
     String name_profile; // имя профиля
@@ -43,6 +45,25 @@ public class one_profile {
                 "rest_timer: " + this.rest_timer + "\n\n"; // формируем запись о профиле
     }
 
+    @Override
+    public boolean equals(Object o) {
+        // 1
+        if (this == o) {
+            return true;
+        }
+
+        // 2
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        // 3
+        one_profile simpson = (one_profile) o;
+        return rest_timer == simpson.rest_timer &&
+                work_timer == simpson.work_timer &&
+                name_profile.equals(simpson.name_profile) &&
+                Arrays.equals(color_profile, simpson.color_profile);
+    }
 
 
 
