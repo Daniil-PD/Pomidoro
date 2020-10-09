@@ -17,7 +17,7 @@ public class Output_to_the_screen extends Thread
                     flag_changes = true;
                 }
 
-                if (profile_now.equals(Main.get_now_profile())){
+                if (!profile_now.equals(Main.get_now_profile())){
                     profile_now = Main.get_now_profile();
                     flag_changes = true;
                 }
@@ -27,12 +27,12 @@ public class Output_to_the_screen extends Thread
             if (flag_changes){ // дописать вывод
                 clearConsole();
 
-                System.out.print("Таймер: " + remaining_time%60 + ":" + remaining_time/60 + "\r");
+                System.out.println("Таймер: " + remaining_time/60 + ":" + remaining_time%60);
 
-
+                flag_changes = false;
             }
             try {
-                Thread.sleep(100);
+                Thread.sleep(1);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

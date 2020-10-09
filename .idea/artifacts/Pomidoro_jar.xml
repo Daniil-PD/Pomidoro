@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Pomidoro:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Pomidoro_jar</output-path>
+    <root id="archive" name="Pomidoro.jar">
+      <element id="module-output" name="Pomidoro" />
+    </root>
+  </artifact>
+</component>

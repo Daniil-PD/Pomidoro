@@ -1,0 +1,24 @@
+name_profile: profile1
+color_profile: 31 241 10
+work_timer: 30
+rest_timer: 6
+
+name_profile: profile2
+color_profile: 31 255 10 
+work_timer: 70
+rest_timer: 10
+
+name_profile: profile3
+color_profile: 31 255 10
+work_timer: 41
+rest_timer: 4
+
+name_profile: profile4
+color_profile: 31 255 10
+work_timer: 35
+rest_timer: 15
+
+name_profile: profile5
+color_profile: 31 255 10
+work_timer: 50
+rest_timer: 10

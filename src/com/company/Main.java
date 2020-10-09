@@ -6,13 +6,14 @@ import javax.swing.plaf.TableHeaderUI;
 public class Main {
 
     static one_profile now_profile;
+    static boolean debag_mode = false;
 
 
     public static void main(String[] args) {
 
         //----------------------загрузка переменных--------------------
 
-        final boolean debag_mode = java.util.Arrays.asList(args).contains("-L");
+        debag_mode = java.util.Arrays.asList(args).contains("-L");
 
 
 
@@ -53,7 +54,8 @@ public class Main {
     }
 
     public static long get_remaining_time(){
-        return System.currentTimeMillis() % 1800;
+
+        return (1800000 - System.currentTimeMillis() % 1800000 ) / 1000;
     }
 
 
