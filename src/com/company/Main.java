@@ -46,7 +46,12 @@ public class Main {
 
         }
 
-	// write your code here
+	// ЗАГРУЗКА ОКНА
+       /* Interactive_menu app = new Interactive_menu();
+        app.setVisible(true);// отображение окна - да
+        app.pack(); //установить оптимальный размер окна
+        */
+
     }
 
     public static one_profile get_now_profile(){
