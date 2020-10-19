@@ -1,5 +1,8 @@
 package com.company;
-
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.plaf.TableHeaderUI;
 
@@ -47,10 +50,10 @@ public class Main {
         }
 
 	// ЗАГРУЗКА ОКНА
-       /* Interactive_menu app = new Interactive_menu();
+       Interactive_menu app = new  Interactive_menu();
         app.setVisible(true);// отображение окна - да
         app.pack(); //установить оптимальный размер окна
-        */
+
 
     }
 
