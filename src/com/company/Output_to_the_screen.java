@@ -28,11 +28,13 @@ public class Output_to_the_screen extends Thread
                 clearConsole();
 
                 System.out.println("Таймер: " + remaining_time/60 + ":" + remaining_time%60);
-
+                System.out.println(profile_now.name_profile);
                 flag_changes = false;
             }
+
+
             try {
-                Thread.sleep(1);
+                Thread.sleep(5);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

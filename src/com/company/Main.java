@@ -35,6 +35,7 @@ public class Main {
         if (debag_mode) System.out.println("Старт классов");
         mechanism.start();
         screen.start();
+        
         while (true)
         {
             try {
@@ -55,7 +56,9 @@ public class Main {
 
     public static long get_remaining_time(){
 
-        return (1800000 - System.currentTimeMillis() % 1800000 ) / 1000;
+        return Clock_mechanism.remaining_time();
+
+        //return (1800000 - System.currentTimeMillis() % 1800000 ) / 1000;
     }
 
 
