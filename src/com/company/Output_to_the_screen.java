@@ -27,8 +27,11 @@ public class Output_to_the_screen extends Thread
             if (flag_changes){ // дописать вывод
                 clearConsole();
 
-                System.out.println("Таймер: " + remaining_time/60 + ":" + remaining_time%60);
-                System.out.println(profile_now.name_profile);
+                //System.out.println("Таймер: " + remaining_time/60 + ":_time%60);
+                //System.out.println(profile_now.name_profile);
+                // выводит профиль каждый раз
+
+
                 flag_changes = false;
             }
 
