@@ -74,4 +74,6 @@ public class Clock_mechanism extends Thread
         //return (1800000 - System.currentTimeMillis() % 1800000 ) / 1000;
         return (x -(System.currentTimeMillis() - time_start)/ 1000 ) ;
     }
+
+
 }

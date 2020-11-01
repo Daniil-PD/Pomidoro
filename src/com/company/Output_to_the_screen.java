@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Scanner;
+
 public class Output_to_the_screen extends Thread
 {
     @Override
@@ -26,26 +28,40 @@ public class Output_to_the_screen extends Thread
 
             if (flag_changes){ // дописать вывод
                 clearConsole();
-
-                //System.out.println("Таймер: " + remaining_time/60 + ":_time%60);
+try{
+                System.out.println("Таймер: " + remaining_time/60 + ":"+remaining_time%60);
                 //System.out.println(profile_now.name_profile);
                 // выводит профиль каждый раз
 
+                    stop_processing();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
                 flag_changes = false;
             }
 
 
+            /*
             try {
                 Thread.sleep(5);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
+            */
 
         }
     }
 
+    private void stop_processing() throws InterruptedException {
+        boolean flag = false;
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("stop");
+        boolean s = scanner.hasNext();
+        if(s) //https://stackoverflow.com/questions/2779484/why-must-wait-always-be-in-synchronized-block
+            wait();
+    }
 
 
     public static void clearConsole()
