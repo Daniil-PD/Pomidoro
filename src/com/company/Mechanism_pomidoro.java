@@ -56,9 +56,12 @@ public class Mechanism_pomidoro extends Thread {
 
         return 0;
     }
-    public int plusTime_mechanism(){
-
-        return 0;
+    public boolean plusTime_mechanism(long time){
+        if (!flag_pause)
+        {
+            time_start += time;
+        }
+        return true;
     }
     public String state_mechanism(){
         if (flag_pause){
