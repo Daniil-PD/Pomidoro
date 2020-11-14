@@ -1,6 +1,31 @@
 package com.company;
 
-import java.util.Scanner;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+
+import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
+
+
+
+
+
 
 public class Output_to_the_screen extends Thread
 {
@@ -11,7 +36,7 @@ public class Output_to_the_screen extends Thread
         one_profile profile_now = Main.get_now_profile();
 
         boolean flag_changes = false;
-        while (true) {
+        while (true    ) {
 
             if (!flag_changes){
                 if (remaining_time != Main.get_remaining_time()){
@@ -28,15 +53,9 @@ public class Output_to_the_screen extends Thread
 
             if (flag_changes){ // дописать вывод
                 clearConsole();
-try{
-                System.out.println("Таймер: " + remaining_time/60 + ":"+remaining_time%60);
-                //System.out.println(profile_now.name_profile);
-                // выводит профиль каждый раз
 
-                    stop_processing();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                System.out.println("Таймер: " + remaining_time/60 + ":"+remaining_time%60);
+
 
                 flag_changes = false;
             }
@@ -53,15 +72,7 @@ try{
         }
     }
 
-    private void stop_processing() throws InterruptedException {
-        boolean flag = false;
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("stop");
-        boolean s = scanner.hasNext();
-        if(s) //https://stackoverflow.com/questions/2779484/why-must-wait-always-be-in-synchronized-block
-            wait();
-    }
 
 
     public static void clearConsole()
