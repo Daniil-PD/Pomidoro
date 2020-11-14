@@ -7,7 +7,8 @@ public class Mechanism_pomidoro extends Thread {
     static boolean flag_pause = true;
     static long work_timer = 10000;
     static long rest_timer = 1000;
-
+    static boolean flag_work = true;
+    static long time_that_passed; //прошедшее время
 
     @Override
     public void run(){ //предлагаю его включить до инициализации
@@ -32,11 +33,13 @@ public class Mechanism_pomidoro extends Thread {
         return (1800000 - System.currentTimeMillis() % 1800000 ) / 1000;
     }
 
-    public boolean stop_mechanism(long work_timer,long rest_timer){
+    public boolean stop_mechanism(long work_timer, long rest_timer){
         Mechanism_pomidoro.work_timer = work_timer;
         Mechanism_pomidoro.rest_timer = rest_timer;
         time_start = System.currentTimeMillis();
+
         pause_mechanism();
+
 
         return true;
     }
@@ -45,6 +48,11 @@ public class Mechanism_pomidoro extends Thread {
         return 0;
     }
     public int pause_mechanism(){
+
+        if(!flag_pause) {
+            time_that_passed = time_start - System.currentTimeMillis();
+            flag_pause = true;
+        }
 
         return 0;
     }
