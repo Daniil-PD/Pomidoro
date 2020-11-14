@@ -20,6 +20,7 @@ public class Mechanism_stopwatch
 
     public void start_mechanism()
     {
+        if (!flag_pause) return;
         time_start = System.currentTimeMillis();
         if (flag_pause) time_start -= time_that_passed;
         flag_pause = false;
