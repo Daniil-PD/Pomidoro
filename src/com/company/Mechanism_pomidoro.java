@@ -32,12 +32,17 @@ public class Mechanism_pomidoro extends Thread {
     }
 
     public static long get_remaining_time(){ //как параметр основного таймера
-        if(time_work_or_rest) { //if work
-            return (time_start - System.currentTimeMillis() % time_start) /rest_timer;
-        } else //with pause
-            return (time_start - System.currentTimeMillis() % time_start - time_that_passed) /rest_timer;
+        if (flag_pause) {
+            if (time_work_or_rest) return (time_start-System.currentTimeMillis()%time_start)/rest_timer;
+            else return (//хз);
+        }
+        else {
+            if (time_work_or_rest) return 3;
+            else return 4;
+        }
+        }
         //return (1800000 - System.currentTimeMillis() % 1800000 ) / 1000;
-    }
+
 
     public boolean stop_mechanism(long work_timer, long rest_timer){
         Mechanism_pomidoro.work_timer = work_timer;
@@ -60,7 +65,7 @@ public class Mechanism_pomidoro extends Thread {
     public boolean pause_mechanism(){
 
         if(!flag_pause) {
-            time_that_passed = time_start - System.currentTimeMillis();
+            time_that_passed =  System.currentTimeMillis()-time_start ;
             flag_pause = true;
         }
 
