@@ -29,7 +29,7 @@ static int a;
         return (x -(System.currentTimeMillis() - time_start)/ 1000 ) ;
     }
 
-    public static class Pomodoro extends Thread{
+    public static class Pomodoro extends Thread{//*
         /*
         * Заглушка на помодоро
         */
