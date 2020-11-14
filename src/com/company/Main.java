@@ -73,6 +73,11 @@ public class Main {
 
     }
 
+    public static void timer_finish(){
+
+
+    }
+
 
 
 

@@ -15,14 +15,14 @@ public class Mechanism_stopwatch
     public long get_past_time()
     {
         if (flag_pause) return time_that_passed;
-        return  System.currentTimeMillis() - time_start;
+        else return  System.currentTimeMillis() - time_start;
     }
 
     public void start_mechanism()
     {
         if (!flag_pause) return;
         time_start = System.currentTimeMillis();
-        if (flag_pause) time_start -= time_that_passed;
+        time_start -= time_that_passed;
         flag_pause = false;
     }
 
