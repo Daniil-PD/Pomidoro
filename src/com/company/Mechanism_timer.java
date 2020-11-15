@@ -13,7 +13,7 @@
      *
      * Методы:
      * -void run()                         : Цикл жизни(работы) таймера
-     * setTime_timer(long time)            : Задаем значение переменной time_timer
+     * -setTime_timer(long time)            : Задаем значение переменной time_timer
      * -long get_remaining_time            : Возвращает продолжительность после запускатаймера работы таймера в милисекунд
      * -void start_mechanism()             : Запуск таймера
      * -void pause_mechanism()             : Ставит таймер на паузу
@@ -31,8 +31,9 @@ public class Mechanism_timer extends Thread
     long time_timer;
     long time_that_passed;
 
-    public Mechanism_timer() //Ининциализация
+    public Mechanism_timer(long time) //Ининциализация
     {
+        time_timer = time;
         flag_pause = true;
         time_that_passed = 0;
     }
@@ -45,7 +46,7 @@ public class Mechanism_timer extends Thread
         {
             if (get_remaining_time() <= 0) //Условине остановки таймера
             {
-                stop_mechanism();
+                stop_mechanism(time_timer);
                 Main.timer_finish();
             }
 
@@ -57,10 +58,7 @@ public class Mechanism_timer extends Thread
         }
     }
 
-    public void setTime_timer(long time_timer) //Установка времени
-    {
-        this.time_timer = time_timer;
-    }
+
 
     public long get_remaining_time() //оставшееся время работы таймера
     {
@@ -83,10 +81,11 @@ public class Mechanism_timer extends Thread
         flag_pause = true; //Смена состояния
     }
 
-    public void stop_mechanism()
+    public void stop_mechanism(long time)
     {
         if (!flag_pause) return; // Проверка состояния
         // Ининциализация
+        time_timer = time;
         flag_pause = true;
         time_that_passed = 0;
     }

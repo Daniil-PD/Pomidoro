@@ -22,7 +22,7 @@ public class Main {
         User_profiles profiles = new User_profiles();
         Output_to_the_screen screen = new Output_to_the_screen();
         Mechanism_pomidoro Mpomidoro = new Mechanism_pomidoro();
-        Mechanism_timer Mtimer = new Mechanism_timer();
+        Mechanism_timer Mtimer = new Mechanism_timer(1000*60*10);
         Mechanism_alarmclock Malarmclock = new Mechanism_alarmclock();
         Mechanism_stopwatch Mstopwatch = new Mechanism_stopwatch();
 
