@@ -9,7 +9,7 @@ public class Mechanism_pomidoro extends Thread {
     static long rest_timer = 1000;
     static boolean time_work_or_rest = true;
     static long time_that_passed; //прошедшее время
-    static boolean stop = false;
+
 
     @Override
     public void run(){ //предлагаю его включить до инициализации
@@ -18,8 +18,7 @@ public class Mechanism_pomidoro extends Thread {
         while (true)
         {
             //тут код по проверке окончания времени
-            if(pause_mechanism()) stop = true; //если сработал, то остановился
-            else if(start_mechanism()) stop = true; //не проходил через старт после паузы, значит остановился
+
 
             //else другие условия
 
@@ -33,12 +32,13 @@ public class Mechanism_pomidoro extends Thread {
 
     public static long get_remaining_time(){ //как параметр основного таймера
         if (flag_pause) {
-            if (time_work_or_rest) return (time_start-System.currentTimeMillis()%time_start)/rest_timer;
-            else return (//хз);
+            if (time_work_or_rest) return rest_timer - time_that_passed;
+            else return work_timer- time_that_passed;
         }
         else {
-            if (time_work_or_rest) return 3;
-            else return 4;
+
+            if (time_work_or_rest) return rest_timer - (System.currentTimeMillis() - time_start);
+            else return work_timer - (System.currentTimeMillis() - time_start);
         }
         }
         //return (1800000 - System.currentTimeMillis() % 1800000 ) / 1000;
