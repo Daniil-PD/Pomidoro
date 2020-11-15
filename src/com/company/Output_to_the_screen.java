@@ -101,8 +101,12 @@ public class Output_to_the_screen {
         Settings.setAlignment(Pos.CENTER);
         group.getChildren().add(ClockZone);
         group.getChildren().add(Settings);
-        Text timeText= new Text("12:43:01");
+        Text timeText= new Text(Long.toString((Main.pomidoro_get_remaining_time()%1000*60*60*24)/1000*60*60) + ":" +
+                Long.toString((Main.pomidoro_get_remaining_time()%1000*60*60)/1000*60) + ":" +
+                Long.toString((Main.pomidoro_get_remaining_time()%1000*60)/1000));
+
         // СЮДА ПОМЕЩАЕМ ВРЕМЯ!
+        //Text timeText= new Text(Long.toString(Main.pomidoro_get_remaining_time()));
         timeText.setX(160);
         timeText.setY(160);
         timeText.setFont(new Font(80));

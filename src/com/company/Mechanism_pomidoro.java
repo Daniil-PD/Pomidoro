@@ -5,10 +5,10 @@ public class Mechanism_pomidoro extends Thread {
 
     static long time_start;
     static boolean flag_pause = true;
-    static long work_timer = 10000;
-    static long rest_timer = 1000;
+    static long work_timer = 1000*60*40;
+    static long rest_timer = 1000*60*10;
     static boolean time_work_or_rest = true;
-    static long time_that_passed; //прошедшее время
+    static long time_that_passed = 0; //прошедшее время
 
 
     @Override
@@ -33,7 +33,7 @@ public class Mechanism_pomidoro extends Thread {
     public static long get_remaining_time(){ //как параметр основного таймера
         if (flag_pause) {
             if (time_work_or_rest) return rest_timer - time_that_passed;
-            else return work_timer- time_that_passed;
+            else return work_timer - time_that_passed;
         }
         else {
 
@@ -77,7 +77,7 @@ public class Mechanism_pomidoro extends Thread {
         {
             time_start += time;
         } else
-            time_start += time + time_that_passed; //???
+            time_that_passed += time; //???
 
         return true;
     }

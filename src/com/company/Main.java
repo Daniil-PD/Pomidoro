@@ -24,6 +24,8 @@ public class Main extends Application {
         User_profiles profiles = new User_profiles();
         Output_to_the_screen screen = new Output_to_the_screen();
         Mechanism_pomidoro Mpomidoro = new Mechanism_pomidoro();
+        Mpomidoro.stop_mechanism(1000*60*40,1000*60*10);
+        Mpomidoro.start_mechanism();
         Mechanism_timer Mtimer = new Mechanism_timer(1000*60*10);
         Mechanism_alarmclock Malarmclock = new Mechanism_alarmclock(18*50*216000*1000);
         Mechanism_stopwatch Mstopwatch = new Mechanism_stopwatch();
@@ -37,7 +39,7 @@ public class Main extends Application {
 
 
         if (debag_mode) System.out.println("Старт классов");
-        Mpomidoro.stop_mechanism(now_profile_pomidoro.work_timer,now_profile_pomidoro.rest_timer); //
+        //Mpomidoro.stop_mechanism(now_profile_pomidoro.work_timer,now_profile_pomidoro.rest_timer); //
         Mpomidoro.start();//запускаем поток
 
 
@@ -63,15 +65,13 @@ public class Main extends Application {
         return now_profile_pomidoro;
     }
 
-    public static long get_remaining_time(){
+    public static long pomidoro_get_remaining_time(){
+        //System.out.println(Mechanism_pomidoro.get_remaining_time());
 
         return Mechanism_pomidoro.get_remaining_time();
-
-        //return (1800000 - System.currentTimeMillis() % 1800000 ) / 1000;
     }
 
     public static void pomidor_finish(){
-
 
     }
 
