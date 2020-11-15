@@ -23,7 +23,7 @@ public class Main {
         Output_to_the_screen screen = new Output_to_the_screen();
         Mechanism_pomidoro Mpomidoro = new Mechanism_pomidoro();
         Mechanism_timer Mtimer = new Mechanism_timer(1000*60*10);
-        Mechanism_alarmclock Malarmclock = new Mechanism_alarmclock();
+        Mechanism_alarmclock Malarmclock = new Mechanism_alarmclock(18*50*216000*1000);
         Mechanism_stopwatch Mstopwatch = new Mechanism_stopwatch();
 
 
@@ -74,6 +74,11 @@ public class Main {
     }
 
     public static void timer_finish(){
+
+
+    }
+
+    public static void alarmclock_finish(){
 
 
     }
