@@ -13,7 +13,6 @@
      *
      * Методы:
      * -void run()                         : Цикл жизни(работы) таймера
-     * -setTime_timer(long time)            : Задаем значение переменной time_timer
      * -long get_remaining_time            : Возвращает продолжительность после запускатаймера работы таймера в милисекунд
      * -void start_mechanism()             : Запуск таймера
      * -void pause_mechanism()             : Ставит таймер на паузу

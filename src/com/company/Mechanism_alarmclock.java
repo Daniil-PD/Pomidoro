@@ -1,7 +1,25 @@
+/*
+ *Будильник
+     *
+     *Конструктор:
+     * -Mechanism_stopwatch()                    : Инициализирует начальные значения.
+     *
+     * Своства:
+     *
+     * boolean time_alarm                        : Время срабатывания будильника
+     * long flag_power                           : Состояние будильника (сработает/не сработает)
+     *
+     * Методы:
+     * -long get_local_time()                    : Возвращает текущее время в милисекундах (14:30->52 200 000)
+     * -void run()                               : Цикл жизни(работы) будильника
+     * -void turn_on_off_mechanism(boolean flag) : Задаем значение переменной flag_power
+     * -setTime_alarm(long time_alarm)           : Задаем значение переменной time_alarm
+     * -String state_mechanism()                 : Возвращает состояние будильника
+ */
+
 package com.company;
 
 import javax.xml.crypto.Data;
-import java.sql.Date;
 
 public class Mechanism_alarmclock extends Thread {
 
@@ -10,7 +28,9 @@ public class Mechanism_alarmclock extends Thread {
 
     private long get_local_time()
     {
-        return System.currentTimeMillis()%(60*60*24*1000)+4*60*60*1000;
+        //System.currentTimeMillis возвращает время пройденное с 01.01.1970 00:00:00 в милисекундах по гринвичу
+        // Прибавляем 4 часа из-за часового пояса (GMT+4),а потом выражаем текущее время (xx:xx:xx) в милисекундах
+        return (System.currentTimeMillis()+4*60*60*1000)%(60*60*24*1000);
     }
 
     public Mechanism_alarmclock(long time) //Ининциализация
