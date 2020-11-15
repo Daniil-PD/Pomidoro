@@ -1,8 +1,10 @@
 package com.company;
 
 
+import javafx.application.Application;
+import javafx.stage.Stage;
 
-public class Main {
+public class Main extends Application {
 
     static one_profile now_profile_pomidoro;
     static boolean debag_mode = false;
@@ -39,7 +41,7 @@ public class Main {
         Mpomidoro.start();//запускаем поток
 
 
-        screen.start();
+        Application.launch(args); // запуск графики
 
 
         
@@ -84,8 +86,10 @@ public class Main {
     }
 
 
-
-
+    @Override
+    public void start(Stage stage) throws Exception {
+        Output_to_the_screen.start_output_to_the_screen(stage);
+    }
 }
 
 
