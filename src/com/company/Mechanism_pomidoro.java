@@ -7,7 +7,7 @@ public class Mechanism_pomidoro extends Thread {
     static boolean flag_pause = true;
     static long work_timer = 1000*60*40;
     static long rest_timer = 1000*60*10;
-    static boolean time_work_or_rest = true;
+    static boolean time_work_or_rest = false;
     static long time_that_passed = 0; //прошедшее время
 
 

@@ -1,5 +1,6 @@
 package com.company;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -26,8 +27,16 @@ import java.io.File;
 
 public class Output_to_the_screen {
 
+    private static void updat_timeText() {
+        timeText.setText (Long.toString((Main.pomidoro_get_remaining_time()/(1000*60*60))) + ":" +
+                Long.toString((Main.pomidoro_get_remaining_time() / (1000 * 60))% 60) + ":" +
+                Long.toString((Main.pomidoro_get_remaining_time() / 1000 ) % 60));
+    }
 
 
+    private static final Text timeText = new Text(Long.toString((Main.pomidoro_get_remaining_time() % 1000 * 60 * 60 * 24) / 1000 * 60 * 60) + ":" +
+            Long.toString((Main.pomidoro_get_remaining_time() % 1000 * 60 * 60) / 1000 * 60) + ":" +
+            Long.toString((Main.pomidoro_get_remaining_time() % 1000 * 60) / 1000));
 
     public static void start_output_to_the_screen(Stage stage) throws Exception {
         Rectangle ClockZone = new Rectangle(330,200, Color.GAINSBORO); //поле заднего фона часов
@@ -101,10 +110,34 @@ public class Output_to_the_screen {
         Settings.setAlignment(Pos.CENTER);
         group.getChildren().add(ClockZone);
         group.getChildren().add(Settings);
-        Text timeText= new Text(Long.toString((Main.pomidoro_get_remaining_time()%1000*60*60*24)/1000*60*60) + ":" +
-                Long.toString((Main.pomidoro_get_remaining_time()%1000*60*60)/1000*60) + ":" +
-                Long.toString((Main.pomidoro_get_remaining_time()%1000*60)/1000));
 
+
+        Thread thread = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                Runnable updater = new Runnable() {
+
+                    @Override
+                    public void run() {
+                        updat_timeText();
+                    }
+                };
+
+                while (true) {
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException ex) {
+                    }
+
+                    // UI update is run on the Application thread
+                    Platform.runLater(updater);
+                }
+            }
+
+        });
+        thread.setDaemon(true);
+        thread.start();
         // СЮДА ПОМЕЩАЕМ ВРЕМЯ!
         //Text timeText= new Text(Long.toString(Main.pomidoro_get_remaining_time()));
         timeText.setX(160);
