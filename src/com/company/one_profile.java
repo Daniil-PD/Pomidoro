@@ -7,8 +7,8 @@ public class one_profile {
     //Просто контенер для хранения
     String name_profile; // имя профиля
     int[] color_profile = new int[3]; // цвет
-    int work_timer; //рабочий таймер
-    int rest_timer; //таймер отдыха
+    int work_timer; //рабочий таймер сек
+    int rest_timer; //таймер отдыха сек
     one_profile(){
         clear();
     }

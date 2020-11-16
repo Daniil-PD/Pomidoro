@@ -4,11 +4,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.plaf.TableHeaderUI;
 
 public class Main {
 
-    static one_profile now_profile;
+    static one_profile now_profile_pomidoro;
     static boolean debag_mode = false;
 
 
@@ -25,19 +24,28 @@ public class Main {
         if (debag_mode) System.out.println("Инициализация классов..");
         User_profiles profiles = new User_profiles();
         Output_to_the_screen screen = new Output_to_the_screen();
-        Clock_mechanism mechanism = new Clock_mechanism();
+        Mechanism_pomidoro Mpomidoro = new Mechanism_pomidoro();
+        Mechanism_timer Mtimer = new Mechanism_timer();
+        Mechanism_alarmclock Malarmclock = new Mechanism_alarmclock();
+        Mechanism_stopwatch Mstopwatch = new Mechanism_stopwatch();
 
 
         if (debag_mode) System.out.println("Подготовка к старту");
 
-        now_profile = profiles.index(0); // Не правильно
+        now_profile_pomidoro = profiles.index(0); // Не правильно
 
         //----------------------загрузка переменных--------------------
 
 
         if (debag_mode) System.out.println("Старт классов");
-        mechanism.start();
+        Mpomidoro.stop_mechanism(now_profile_pomidoro.work_timer,now_profile_pomidoro.rest_timer); //
+        Mpomidoro.start();//запускаем поток
+
+
         screen.start();
+
+
+        
         while (true)
         {
             try {
@@ -58,14 +66,20 @@ public class Main {
     }
 
     public static one_profile get_now_profile(){
-        return now_profile;
+        return now_profile_pomidoro;
     }
 
     public static long get_remaining_time(){
 
-        return (1800000 - System.currentTimeMillis() % 1800000 ) / 1000;
+        return Mechanism_pomidoro.get_remaining_time();
+
+        //return (1800000 - System.currentTimeMillis() % 1800000 ) / 1000;
     }
 
+    public static void pomidor_finish(){
+
+
+    }
 
 
 

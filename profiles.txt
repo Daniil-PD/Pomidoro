@@ -1,7 +1,7 @@
 name_profile: profile1
 color_profile: 31 241 10
-work_timer: 30
-rest_timer: 6
+work_timer: 1800
+rest_timer: 1000
 
 name_profile: profile2
 color_profile: 31 255 10 
