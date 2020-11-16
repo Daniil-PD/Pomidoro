@@ -5,11 +5,11 @@ public class Mechanism_pomidoro extends Thread {
 
     static long time_start;
     static boolean flag_pause = true;
-    static long work_timer = 10000;
-    static long rest_timer = 1000;
-    static boolean time_work_or_rest = true;
-    static long time_that_passed; //прошедшее время
-    static boolean stop = false;
+    static long work_timer = 1000*60*40;
+    static long rest_timer = 1000*60*10;
+    static boolean time_work_or_rest = false;
+    static long time_that_passed = 0; //прошедшее время
+
 
     @Override
     public void run(){ //предлагаю его включить до инициализации
@@ -18,8 +18,7 @@ public class Mechanism_pomidoro extends Thread {
         while (true)
         {
             //тут код по проверке окончания времени
-            if(pause_mechanism()) stop = true; //если сработал, то остановился
-            else if(start_mechanism()) stop = true; //не проходил через старт после паузы, значит остановился
+
 
             //else другие условия
 
@@ -32,12 +31,18 @@ public class Mechanism_pomidoro extends Thread {
     }
 
     public static long get_remaining_time(){ //как параметр основного таймера
-        if(time_work_or_rest) { //if work
-            return (time_start - System.currentTimeMillis() % time_start) /rest_timer;
-        } else //with pause
-            return (time_start - System.currentTimeMillis() % time_start - time_that_passed) /rest_timer;
+        if (flag_pause) {
+            if (time_work_or_rest) return rest_timer - time_that_passed;
+            else return work_timer - time_that_passed;
+        }
+        else {
+
+            if (time_work_or_rest) return rest_timer - (System.currentTimeMillis() - time_start);
+            else return work_timer - (System.currentTimeMillis() - time_start);
+        }
+        }
         //return (1800000 - System.currentTimeMillis() % 1800000 ) / 1000;
-    }
+
 
     public boolean stop_mechanism(long work_timer, long rest_timer){
         Mechanism_pomidoro.work_timer = work_timer;
@@ -60,7 +65,7 @@ public class Mechanism_pomidoro extends Thread {
     public boolean pause_mechanism(){
 
         if(!flag_pause) {
-            time_that_passed = time_start - System.currentTimeMillis();
+            time_that_passed =  System.currentTimeMillis()-time_start ;
             flag_pause = true;
         }
 
@@ -72,7 +77,7 @@ public class Mechanism_pomidoro extends Thread {
         {
             time_start += time;
         } else
-            time_start += time + time_that_passed; //???
+            time_that_passed += time; //???
 
         return true;
     }
