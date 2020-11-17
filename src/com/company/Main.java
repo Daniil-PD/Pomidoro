@@ -28,7 +28,7 @@ public class Main extends Application {
         Output_to_the_screen screen = new Output_to_the_screen();
         Mechanism_pomidoro Mpomidoro = new Mechanism_pomidoro();
         Mpomidoro.stop_mechanism(1000*60*40,1000*60*10);
-        Mpomidoro.start_mechanism();
+        //Mpomidoro.start_mechanism();
         Mechanism_timer Mtimer = new Mechanism_timer(1000*60*10);
         Mechanism_alarmclock Malarmclock = new Mechanism_alarmclock(18*50*216000*1000);
         Mechanism_stopwatch Mstopwatch = new Mechanism_stopwatch();
@@ -89,8 +89,17 @@ public class Main extends Application {
     }
 
     public static void alarmclock_finish(){
+    }
 
+    public static void pomidor_stop_mechanism(){
+        Mechanism_pomidoro.stop_mechanism(1000*60*40,1000*60*10);
 
+    }
+    public static void pomidor_pause_mechanism(){
+        Mechanism_pomidoro.pause_mechanism();
+    }
+    public static void pomidor_start_mechanism(){
+        Mechanism_pomidoro.start_mechanism();
     }
 
 

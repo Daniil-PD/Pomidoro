@@ -44,25 +44,33 @@ public class Mechanism_pomidoro extends Thread {
         //return (1800000 - System.currentTimeMillis() % 1800000 ) / 1000;
 
 
-    public boolean stop_mechanism(long work_timer, long rest_timer){
+    public static boolean stop_mechanism(long work_timer, long rest_timer){
         Mechanism_pomidoro.work_timer = work_timer;
         Mechanism_pomidoro.rest_timer = rest_timer;
-        time_start = System.currentTimeMillis();
+        if (flag_pause){
+            if (time_work_or_rest){
+                time_that_passed = 0;
+            } else {
+                time_that_passed = 0;
+            }
+        }else {
 
+            time_start = System.currentTimeMillis();
+        }
         pause_mechanism();
 
 
         return true;
     }
-    public boolean start_mechanism(){
+    public static boolean start_mechanism(){
         if (flag_pause){
-            time_start = time_that_passed + System.currentTimeMillis();
+            time_start =  System.currentTimeMillis() - time_that_passed;
             flag_pause = false;
         }
 
         return false;
     }
-    public boolean pause_mechanism(){
+    public static boolean pause_mechanism(){
 
         if(!flag_pause) {
             time_that_passed =  System.currentTimeMillis()-time_start ;
