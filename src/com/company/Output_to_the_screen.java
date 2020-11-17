@@ -28,9 +28,10 @@ import java.io.File;
 public class Output_to_the_screen {
 
     private static void updat_timeText() {
-        timeText.setText (Long.toString((Main.pomidoro_get_remaining_time()/(1000*60*60))) + ":" +
+        timeText.setText (
                 Long.toString((Main.pomidoro_get_remaining_time() / (1000 * 60))% 60) + ":" +
-                Long.toString((Main.pomidoro_get_remaining_time() / 1000 ) % 60));
+                Long.toString((Main.pomidoro_get_remaining_time() / 1000 ) % 60) );
+                //Long.toString((Main.pomidoro_get_remaining_time()) % 1000));
     }
 
 
@@ -126,7 +127,7 @@ public class Output_to_the_screen {
 
                 while (true) {
                     try {
-                        Thread.sleep(100);
+                        Thread.sleep(1);
                     } catch (InterruptedException ex) {
                     }
 
@@ -148,16 +149,19 @@ public class Output_to_the_screen {
 
         HBox timeButtons = new HBox();
         Button StartBut = new Button("Старт");
+        StartBut.setOnAction(event -> Main.pomidor_start_mechanism());
         Button StopBut = new Button("Стоп");
-        Button ContinueBut = new Button("Продолжить");
-        timeButtons.getChildren().addAll(StartBut, StopBut, ContinueBut);
+        StopBut.setOnAction(event -> Main.pomidor_stop_mechanism());
+        Button PauseBut = new Button("Пауза");
+        PauseBut.setOnAction(event -> Main.pomidor_pause_mechanism());
+        timeButtons.getChildren().addAll(StartBut, StopBut, PauseBut);
         timeButtons.setSpacing(25);
         timeButtons.setLayoutX(180);
         timeButtons.setLayoutY(255);
         group.getChildren().add(timeButtons);
         StartBut.setStyle("-fx-background-color: transparent");
         StopBut.setStyle("-fx-background-color: transparent");
-        ContinueBut.setStyle("-fx-background-color: transparent");
+        PauseBut.setStyle("-fx-background-color: transparent");
         AlClock.setStyle("-fx-background-color: transparent");
         Pomodoro.setStyle("-fx-background-color: transparent");
         SecRecorder.setStyle("-fx-background-color: transparent");
@@ -184,7 +188,7 @@ public class Output_to_the_screen {
 
                 StartBut.setTextFill(Color.BLACK);
                 StopBut.setTextFill(Color.BLACK);
-                ContinueBut.setTextFill(Color.BLACK);
+                PauseBut.setTextFill(Color.BLACK);
                 AlClock.setTextFill(Color.BLACK);
                 Pomodoro.setTextFill(Color.BLACK);
                 SecRecorder.setTextFill(Color.BLACK);
@@ -200,7 +204,7 @@ public class Output_to_the_screen {
 
                 StartBut.setTextFill(Color.MISTYROSE);
                 StopBut.setTextFill(Color.MISTYROSE);
-                ContinueBut.setTextFill(Color.MISTYROSE);
+                PauseBut.setTextFill(Color.MISTYROSE);
                 AlClock.setTextFill(Color.LIGHTGREY);
                 Pomodoro.setTextFill(Color.LIGHTGREY);
                 SecRecorder.setTextFill(Color.LIGHTGREY);
