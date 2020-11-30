@@ -1,26 +1,25 @@
 /*
-     *Таймер
-     *
-     *Конструктор:
-     * -Mechanism_stopwatch()              : Инициализирует начальные значения.
-     *
-     * Своства:
-     *
-     * boolean flag_pause                  : Состояние таймера
-     * long time_start                     : Время снятия таймера с паузы
-     * long time_that_passed               : Пройденое время с работы таймера до паузы
-     * long time_timer                     : Продолжительность работы таймера
-     *
-     * Методы:
-     * -void run()                         : Цикл жизни(работы) таймера
-     * -long get_remaining_time            : Возвращает продолжительность после запускатаймера работы таймера в милисекунд
-     * -void start_mechanism()             : Запуск таймера
-     * -void pause_mechanism()             : Ставит таймер на паузу
-     * -void stop_mechanism()              : Останавливает/Сбрасывает таймер
-     * -void plusTime_mechanism(long time) : Добление доплнительного времени работы
-     * -String state_mechanism()           : Возвращает состояние таймера
+ *Таймер
+ *
+ *Конструктор:
+ * -Mechanism_stopwatch()              : Инициализирует начальные значения.
+ *
+ * Своства:
+ *
+ * boolean flag_pause                  : Состояние таймера
+ * long time_start                     : Время снятия таймера с паузы
+ * long time_that_passed               : Пройденое время с работы таймера до паузы
+ * long time_timer                     : Продолжительность работы таймера
+ *
+ * Методы:
+ * -void run()                         : Цикл жизни(работы) таймера
+ * -long get_remaining_time            : Возвращает продолжительность после запускатаймера работы таймера в милисекунд
+ * -void start_mechanism()             : Запуск таймера
+ * -void pause_mechanism()             : Ставит таймер на паузу
+ * -void stop_mechanism()              : Останавливает/Сбрасывает таймер
+ * -void plusTime_mechanism(long time) : Добление доплнительного времени работы
+ * -String state_mechanism()           : Возвращает состояние таймера
  */
-
 package com.company;
 
 public class Mechanism_timer extends Thread

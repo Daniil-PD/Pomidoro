@@ -56,8 +56,8 @@ public class AddProfile {
 
         ProfileGrid.add(LabelTimer,0,5);
         ProfileGrid.add(LabelRest,0,7);
-        ProfileGrid.setHalignment(LabelTimer, HPos.CENTER);
-        ProfileGrid.setHalignment(LabelRest, HPos.CENTER);
+        ProfileGrid.setHalignment(LabelTimer, HPos.RIGHT);
+        ProfileGrid.setHalignment(LabelRest, HPos.RIGHT);
         MinuteTimer.setLayoutX(190);
         MinuteTimer.setLayoutY(150);
 
@@ -76,6 +76,8 @@ public class AddProfile {
         restTimer.setLayoutY(200);
         Group AllWindow = new Group();
         AllWindow.getChildren().addAll(ProfileGrid,restTimer,MinuteTimer);
+
+        //one_profile NewPersonProfile = new one_profile();
 
         NewProfileStage.setTitle("Создать профиль");
         Scene NewprofileScene = new Scene(AllWindow, 470, 290);

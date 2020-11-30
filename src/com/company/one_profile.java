@@ -31,11 +31,11 @@ public class one_profile {
 
     public boolean isFull() { //все поля профиля заполнены
         return this.name_profile  != null &&
-        this.color_profile[0] != -1 &&
-        this.color_profile[1] != -1 &&
-        this.color_profile[2] != -1 &&
-        this.work_timer != 0 &&
-        this.rest_timer != 0;
+                this.color_profile[0] != -1 &&
+                this.color_profile[1] != -1 &&
+                this.color_profile[2] != -1 &&
+                this.work_timer != 0 &&
+                this.rest_timer != 0;
     }
     @Override
     public String toString() { //Простой вывод

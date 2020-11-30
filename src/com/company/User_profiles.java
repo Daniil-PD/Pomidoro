@@ -105,7 +105,7 @@ public class User_profiles {
                     if (buff_profile.isFull()){
                         profiles.add(new one_profile(buff_profile.name_profile, buff_profile.color_profile, buff_profile.work_timer, buff_profile.rest_timer));
                     }
-                        // тут надо вставить буфер в список
+                    // тут надо вставить буфер в список
                     buff_profile.clear();
                 } else {
                     words = line.split(" ");
@@ -156,7 +156,7 @@ public class User_profiles {
             System.out.println(ex.getMessage());
             return false;
         }
-        boolean flag_to_qveri = false; // усиленно обнавляем инфу
+        boolean flag_to_qveri = false; // усиленно обновляем инфу
         for (int i = 0; i<10 ; i++) {
             if (update_data()) {
                 flag_to_qveri = true;

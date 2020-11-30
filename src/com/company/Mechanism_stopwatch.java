@@ -1,21 +1,21 @@
 /*
-     *Секундомер
-     *
-     *Конструктор:
-     * -Mechanism_stopwatch()        : Инициализирует начальные значения.
-     *
-     * Своства:
-     *
-     * boolean flag_pause            : Состояние секундомера
-     * static long time_start        : Время снятия секундомера с паузы
-     * static long time_that_passed  : Пройденое время с работы секундомера до паузы
-     *
-     * Методы:
-     * -long get_past_time           : Возвращает количество милисекунд прошедших после запуска секундомера
-     * -void start_mechanism()       : Запуск секундамера
-     * -void pause_mechanism()       : Ставит секундамер на паузу
-     * -void stop_mechanism()        : Останавливает/Сбрасывает секундамер
-     * -String state_mechanism()     : Возвращает состояние секундомера
+ *Секундомер
+ *
+ *Конструктор:
+ * -Mechanism_stopwatch()        : Инициализирует начальные значения.
+ *
+ * Своства:
+ *
+ * boolean flag_pause            : Состояние секундомера
+ * static long time_start        : Время снятия секундомера с паузы
+ * static long time_that_passed  : Пройденое время с работы секундомера до паузы
+ *
+ * Методы:
+ * -long get_past_time           : Возвращает количество милисекунд прошедших после запуска секундомера
+ * -void start_mechanism()       : Запуск секундамера
+ * -void pause_mechanism()       : Ставит секундамер на паузу
+ * -void stop_mechanism()        : Останавливает/Сбрасывает секундамер
+ * -String state_mechanism()     : Возвращает состояние секундомера
  */
 
 package com.company;
@@ -52,7 +52,7 @@ public class Mechanism_stopwatch
         time_that_passed = System.currentTimeMillis() - time_start; // Расчет пройденного времени до паузы
         flag_pause = true; //Смена состояния
     }
-    
+
     public void stop_mechanism()
     {
         if (!flag_pause) return; // Проверка состояния

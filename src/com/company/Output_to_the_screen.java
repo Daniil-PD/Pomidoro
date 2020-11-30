@@ -26,24 +26,87 @@ import javafx.scene.media.MediaPlayer;
 import java.io.File;
 
 public class Output_to_the_screen {
-
+    public static Group groupOfFuncts;
     private static void updat_timeText() {
-        timeText.setText (
-                Long.toString((Main.pomidoro_get_remaining_time() / (1000 * 60))% 60) + ":" +
-                Long.toString((Main.pomidoro_get_remaining_time() / 1000 ) % 60) );
-                //Long.toString((Main.pomidoro_get_remaining_time()) % 1000));
+        timeText.setText(
+                Long.toString((Main.pomidoro_get_remaining_time() / (1000 * 60)) % 60) + ":" +
+                        Long.toString((Main.pomidoro_get_remaining_time() / 1000) % 60));
+        //Long.toString((Main.pomidoro_get_remaining_time()) % 1000));
     }
-
 
     private static final Text timeText = new Text(Long.toString((Main.pomidoro_get_remaining_time() % 1000 * 60 * 60 * 24) / 1000 * 60 * 60) + ":" +
             Long.toString((Main.pomidoro_get_remaining_time() % 1000 * 60 * 60) / 1000 * 60) + ":" +
             Long.toString((Main.pomidoro_get_remaining_time() % 1000 * 60) / 1000));
 
+    public static void ChoiceF(int choice) { //выбор пользователем одной из 4х функций (визуал)
+        try {
+
+            HBox timeButtFuncts = new HBox();
+            Button StartBut = new Button("Старт");
+            Button StopBut = new Button("Стоп");
+            Button PauseBut = new Button("Пауза");
+            StartBut.setStyle("-fx-background-color: transparent");
+            StopBut.setStyle("-fx-background-color: transparent");
+            PauseBut.setStyle("-fx-background-color: transparent");
+             switch (choice) {
+
+                case 1:
+                    StartBut.setOnAction(event -> Main.pomidor_start_mechanism());
+                    StopBut.setOnAction(event -> Main.pomidor_stop_mechanism());
+                    PauseBut.setOnAction(event -> Main.pomidor_pause_mechanism());
+                    Button PlusFiveMinutes = new Button("+5 минут");
+                    timeButtFuncts.getChildren().addAll(StartBut, StopBut, PauseBut, PlusFiveMinutes);
+                    timeButtFuncts.setSpacing(10);
+                    timeButtFuncts.setLayoutX(190);
+                    timeButtFuncts.setLayoutY(255);
+                    groupOfFuncts.getChildren().add(timeButtFuncts);
+                    PlusFiveMinutes.setStyle("-fx-background-color: transparent");
+                case 2:
+                    StartBut.setOnAction(event -> Main.pomidor_start_mechanism()); // Сюда и ниже прописать нужную функцию
+                    StopBut.setOnAction(event -> Main.pomidor_stop_mechanism());
+                    PauseBut.setOnAction(event -> Main.pomidor_pause_mechanism());
+                    Button Plus15sec = new Button("+15 сек.");
+                    Button Plus60sec = new Button("+60 сек.");
+                    Button Plus10min = new Button("+10 min.");
+                    timeButtFuncts.getChildren().addAll(StartBut, StopBut, PauseBut, Plus15sec, Plus60sec, Plus10min);
+                    timeButtFuncts.setSpacing(5);
+                    timeButtFuncts.setLayoutX(130);
+                    timeButtFuncts.setLayoutY(255);
+                    groupOfFuncts.getChildren().add(timeButtFuncts);
+                    Plus15sec.setStyle("-fx-background-color: transparent");
+                    Plus60sec.setStyle("-fx-background-color: transparent");
+                    Plus10min.setStyle("-fx-background-color: transparent");
+                case 3:
+                    StartBut.setOnAction(event -> Main.pomidor_start_mechanism());
+                    StopBut.setOnAction(event -> Main.pomidor_stop_mechanism());
+                    PauseBut.setOnAction(event -> Main.pomidor_pause_mechanism());
+                    timeButtFuncts.getChildren().addAll(StartBut, StopBut, PauseBut);
+                    timeButtFuncts.setSpacing(10);
+                    timeButtFuncts.setLayoutX(220);
+                    timeButtFuncts.setLayoutY(255);
+                    groupOfFuncts.getChildren().add(timeButtFuncts);
+                case 4:
+
+                    StartBut.setOnAction(event -> Main.pomidor_start_mechanism());
+                    StopBut.setOnAction(event -> Main.pomidor_stop_mechanism());
+                    timeButtFuncts.getChildren().addAll(StartBut, StopBut);
+                    timeButtFuncts.setSpacing(10);
+                    timeButtFuncts.setLayoutX(250);
+                    timeButtFuncts.setLayoutY(255);
+                    groupOfFuncts.getChildren().add(timeButtFuncts);
+            }
+        } catch (Exception e) {
+            System.out.println("There");
+        }
+
+    }
     public static void start_output_to_the_screen(Stage stage) throws Exception {
-        Rectangle ClockZone = new Rectangle(330,200, Color.GAINSBORO); //поле заднего фона часов
+        groupOfFuncts = new Group();
+        Group groupOfAll = new Group(groupOfFuncts);
+        Rectangle ClockZone = new Rectangle(330, 200, Color.GAINSBORO); //поле заднего фона часов
         ClockZone.setX(140);
         ClockZone.setY(40);
-        Group group = new Group(); //без актеров и сцены не будет спектакля
+        ChoiceF(1);
         MenuBar menuBar = new MenuBar(); // верхняя строка-меню
         Menu menuSettings = new Menu("Настройки"); // добавление менюшек
         Menu menuProfile = new Menu("Профиль");
@@ -72,13 +135,12 @@ public class Output_to_the_screen {
         DeleteProfile.setOnAction(new EventHandler<ActionEvent>() { // обратите внимание на методы setOn...
             @Override
             public void handle(ActionEvent actionEvent) {
-
             }
         });
         */
         MenuItem AddProfile1 = new MenuItem("Добавить профиль");
         AddProfile1.setOnAction(event -> AddProfile.AddProfileWindow("Добавление профиля"));
-        MenuItem ChangeProfile = new MenuItem("Изменить текущий профиль");
+        MenuItem ChangeProfile = new MenuItem("Сменить текущий профиль");
         menuProfile.getItems().addAll(AddProfile1, DeleteProfile, ChangeProfile); // группируем профиль
 
         RadioMenuItem Lightheme = new RadioMenuItem("Светлая тема"); // список меню настройки
@@ -91,7 +153,7 @@ public class Output_to_the_screen {
         menuSettings.getItems().addAll(Lightheme, Darktheme, autoTheme); // группируем настройки
         menuBar.getMenus().addAll(menuSettings, menuProfile, menuHelp); // группируем всё меню
         menuBar.setMinWidth(500);
-        group.getChildren().add(menuBar);
+        groupOfAll.getChildren().add(menuBar);
 
 
         // добавляем меню к актёрам
@@ -109,8 +171,8 @@ public class Output_to_the_screen {
         Settings.setSpacing(30);
         Settings.setLayoutY(15);
         Settings.setAlignment(Pos.CENTER);
-        group.getChildren().add(ClockZone);
-        group.getChildren().add(Settings);
+        groupOfAll.getChildren().add(ClockZone);
+        groupOfAll.getChildren().add(Settings);
 
 
         Thread thread = new Thread(new Runnable() {
@@ -139,39 +201,19 @@ public class Output_to_the_screen {
         });
         thread.setDaemon(true);
         thread.start();
-        // СЮДА ПОМЕЩАЕМ ВРЕМЯ!
-        //Text timeText= new Text(Long.toString(Main.pomidoro_get_remaining_time()));
         timeText.setX(160);
         timeText.setY(160);
         timeText.setFont(new Font(80));
-        group.getChildren().add (timeText);
+        groupOfAll.getChildren().add(timeText);
 
 
-        HBox timeButtons = new HBox();
-        Button StartBut = new Button("Старт");
-        StartBut.setOnAction(event -> Main.pomidor_start_mechanism());
-        Button StopBut = new Button("Стоп");
-        StopBut.setOnAction(event -> Main.pomidor_stop_mechanism());
-        Button PauseBut = new Button("Пауза");
-        PauseBut.setOnAction(event -> Main.pomidor_pause_mechanism());
-        timeButtons.getChildren().addAll(StartBut, StopBut, PauseBut);
-        timeButtons.setSpacing(25);
-        timeButtons.setLayoutX(180);
-        timeButtons.setLayoutY(255);
-        group.getChildren().add(timeButtons);
-        StartBut.setStyle("-fx-background-color: transparent");
-        StopBut.setStyle("-fx-background-color: transparent");
-        PauseBut.setStyle("-fx-background-color: transparent");
         AlClock.setStyle("-fx-background-color: transparent");
         Pomodoro.setStyle("-fx-background-color: transparent");
         SecRecorder.setStyle("-fx-background-color: transparent");
         Timer.setStyle("-fx-background-color: transparent");
 
 
-
-
-
-        Scene scene = new Scene(group, 500,300);
+        Scene scene = new Scene(groupOfAll, 500, 300);
 
         toggleGroup.selectToggle(autoTheme);
         stage.setResizable(false);
@@ -180,9 +222,9 @@ public class Output_to_the_screen {
         stage.setScene(scene); //The show must begin
 
         stage.show();//окрываем занавес
-        //добавляем события на кнопки, зависящие напрямую от сцены (не могли создать раньше, т.к. сцены не было):
-        Lightheme.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
+        //ПОКА ТЕМЫ НЕ РАБОТАЮТ!
+       /*  Lightheme.setOnAction(new EventHandler<ActionEvent>() {
+           @Override
             public void handle(ActionEvent actionEvent) {
                 scene.setFill(Color.WHITE);
 
@@ -214,19 +256,38 @@ public class Output_to_the_screen {
 
             }
         });
-       /* public boolean lightheme (boolean boo)
-        {
-            return ;
-        }
-
-        /*autoTheme.setOnAction(new EventHandler<ActionEvent>() {
+*/
+        Pomodoro.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-
+                groupOfFuncts.getChildren().clear();
+                ChoiceF(1);
+                
             }
         });
-         */
 
+        Timer.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                groupOfFuncts.getChildren().clear();
+                ChoiceF(2);
+            }
+        });
+
+        SecRecorder.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                groupOfFuncts.getChildren().clear();
+                ChoiceF(3);
+            }
+        });
+        AlClock.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                groupOfFuncts.getChildren().clear();
+                ChoiceF(4);
+            }
+        });
 
     }
 }

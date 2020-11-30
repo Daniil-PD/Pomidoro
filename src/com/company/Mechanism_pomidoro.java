@@ -40,8 +40,8 @@ public class Mechanism_pomidoro extends Thread {
             if (time_work_or_rest) return rest_timer - (System.currentTimeMillis() - time_start);
             else return work_timer - (System.currentTimeMillis() - time_start);
         }
-        }
-        //return (1800000 - System.currentTimeMillis() % 1800000 ) / 1000;
+    }
+    //return (1800000 - System.currentTimeMillis() % 1800000 ) / 1000;
 
 
     public static boolean stop_mechanism(long work_timer, long rest_timer){

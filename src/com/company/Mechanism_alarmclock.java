@@ -1,20 +1,20 @@
 /*
  *Будильник
-     *
-     *Конструктор:
-     * -Mechanism_stopwatch()                    : Инициализирует начальные значения.
-     *
-     * Своства:
-     *
-     * boolean time_alarm                        : Время срабатывания будильника
-     * long flag_power                           : Состояние будильника (сработает/не сработает)
-     *
-     * Методы:
-     * -long get_local_time()                    : Возвращает текущее время в милисекундах (14:30->52 200 000)
-     * -void run()                               : Цикл жизни(работы) будильника
-     * -void turn_on_off_mechanism(boolean flag) : Задаем значение переменной flag_power
-     * -setTime_alarm(long time_alarm)           : Задаем значение переменной time_alarm
-     * -String state_mechanism()                 : Возвращает состояние будильника
+ *
+ *Конструктор:
+ * -Mechanism_stopwatch()                    : Инициализирует начальные значения.
+ *
+ * Своства:
+ *
+ * boolean time_alarm                        : Время срабатывания будильника
+ * long flag_power                           : Состояние будильника (сработает/не сработает)
+ *
+ * Методы:
+ * -long get_local_time()                    : Возвращает текущее время в милисекундах (14:30->52 200 000)
+ * -void run()                               : Цикл жизни(работы) будильника
+ * -void turn_on_off_mechanism(boolean flag) : Задаем значение переменной flag_power
+ * -setTime_alarm(long time_alarm)           : Задаем значение переменной time_alarm
+ * -String state_mechanism()                 : Возвращает состояние будильника
  */
 
 package com.company;

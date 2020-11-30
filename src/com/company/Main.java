@@ -1,8 +1,5 @@
 package com.company;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -49,7 +46,7 @@ public class Main extends Application {
         Application.launch(args); // запуск графики
 
 
-        
+
         while (true)
         {
             try {
@@ -61,12 +58,7 @@ public class Main extends Application {
 
         }
 
-	// ЗАГРУЗКА ОКНА
-       Interactive_menu app = new  Interactive_menu();
-        app.setVisible(true);// отображение окна - да
-        app.pack(); //установить оптимальный размер окна
-
-
+        // write your code here
     }
 
     public static one_profile get_now_profile(){
