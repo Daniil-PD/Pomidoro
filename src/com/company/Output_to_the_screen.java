@@ -13,6 +13,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -23,6 +25,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+
+import java.awt.event.MouseEvent;
 import java.io.File;
 
 public class Output_to_the_screen {
@@ -48,6 +52,7 @@ public class Output_to_the_screen {
             StartBut.setStyle("-fx-background-color: transparent");
             StopBut.setStyle("-fx-background-color: transparent");
             PauseBut.setStyle("-fx-background-color: transparent");
+
              switch (choice) {
 
                 case 1:
@@ -96,7 +101,7 @@ public class Output_to_the_screen {
                     groupOfFuncts.getChildren().add(timeButtFuncts);
             }
         } catch (Exception e) {
-            System.out.println("There");
+
         }
 
     }
@@ -106,6 +111,8 @@ public class Output_to_the_screen {
         Rectangle ClockZone = new Rectangle(330, 200, Color.GAINSBORO); //поле заднего фона часов
         ClockZone.setX(140);
         ClockZone.setY(40);
+        ClockZone.setArcHeight(105);
+        ClockZone.setArcWidth(60);
         ChoiceF(1);
         MenuBar menuBar = new MenuBar(); // верхняя строка-меню
         Menu menuSettings = new Menu("Настройки"); // добавление менюшек
@@ -158,10 +165,23 @@ public class Output_to_the_screen {
 
         // добавляем меню к актёрам
         VBox Settings = new VBox();
-        Button Pomodoro = new Button("Помодоро");
-        Button Timer = new Button("Таймер");
-        Button SecRecorder = new Button("Секундомер");
-        Button AlClock = new Button("Будильник");
+        ToggleButton Pomodoro = new ToggleButton("Помодоро");
+        ToggleButton Timer = new ToggleButton("Таймер");
+        ToggleButton SecRecorder = new ToggleButton("Секундомер");
+        ToggleButton AlClock = new ToggleButton("Будильник");
+
+        ToggleGroup setts = new ToggleGroup();
+        Pomodoro.setToggleGroup(setts);
+        Timer.setToggleGroup(setts);
+        SecRecorder.setToggleGroup(setts);
+        AlClock.setToggleGroup(setts);
+        setts.selectToggle(Pomodoro);
+
+
+
+
+
+
         Timer.setMaxWidth(100);
         Pomodoro.setMaxWidth(100);
         SecRecorder.setMaxWidth(100);
@@ -207,10 +227,10 @@ public class Output_to_the_screen {
         groupOfAll.getChildren().add(timeText);
 
 
-        AlClock.setStyle("-fx-background-color: transparent");
-        Pomodoro.setStyle("-fx-background-color: transparent");
-        SecRecorder.setStyle("-fx-background-color: transparent");
-        Timer.setStyle("-fx-background-color: transparent");
+        /*AlClock.setStyle("-fx-background-color: WHITESMOKE");
+        Pomodoro.setStyle("-fx-background-color: WHITESMOKE");
+        SecRecorder.setStyle("-fx-background-color: WHITESMOKE");
+        Timer.setStyle("-fx-background-color: WHITESMOKE"); */
 
 
         Scene scene = new Scene(groupOfAll, 500, 300);
@@ -220,6 +240,7 @@ public class Output_to_the_screen {
 
         stage.setTitle("Time cool app");//как назовём спектакль?)
         stage.setScene(scene); //The show must begin
+        stage.getIcons().add(new Image("file:64.png"));
 
         stage.show();//окрываем занавес
         //ПОКА ТЕМЫ НЕ РАБОТАЮТ!
@@ -262,7 +283,6 @@ public class Output_to_the_screen {
             public void handle(ActionEvent actionEvent) {
                 groupOfFuncts.getChildren().clear();
                 ChoiceF(1);
-                
             }
         });
 
