@@ -1,4 +1,5 @@
 package com.company;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
