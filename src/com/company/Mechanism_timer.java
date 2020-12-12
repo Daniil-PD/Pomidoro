@@ -28,6 +28,11 @@ public class Mechanism_timer extends Thread
     boolean flag_pause;
     long time_timer;
     long time_that_passed;
+    boolean isActive = true;
+
+    void disable(){
+        isActive=false;
+    }
 
     public Mechanism_timer(long time) //Ининциализация
     {
@@ -40,7 +45,7 @@ public class Mechanism_timer extends Thread
     public void run()
     {
         time_start = System.currentTimeMillis();
-        while (true) // цикл жизни
+        while (isActive) // цикл жизни
         {
             if (get_remaining_time() <= 0) //Условине остановки таймера
             {

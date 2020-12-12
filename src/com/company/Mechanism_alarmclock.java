@@ -25,6 +25,11 @@ public class Mechanism_alarmclock extends Thread {
 
     long time_alarm;
     boolean flag_power;
+    boolean isActive = true;
+
+    void disable(){
+        isActive=false;
+    }
 
     private long get_local_time()
     {
@@ -42,7 +47,7 @@ public class Mechanism_alarmclock extends Thread {
     @Override
     public void run()
     {
-        while (true) // цикл жизни
+        while (isActive) // цикл жизни
         {
             if ((get_local_time() == time_alarm) && flag_power)
             {

@@ -25,22 +25,52 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.WindowEvent;
 
 import java.awt.event.MouseEvent;
 import java.io.File;
 
 public class Output_to_the_screen {
+
+    private static int Selected = 1;
+
     public static Group groupOfFuncts;
     private static void updat_timeText() {
-        timeText.setText(
-                Long.toString((Main.pomidoro_get_remaining_time() / (1000 * 60)) % 60) + ":" +
-                        Long.toString((Main.pomidoro_get_remaining_time() / 1000) % 60));
-        //Long.toString((Main.pomidoro_get_remaining_time()) % 1000));
+        switch (Selected) {
+            case 1:
+                timeText.setText(
+                        Long.toString((Main.pomidoro_get_remaining_time() / (1000 * 60)) % 60) + ":" +
+                                Long.toString((Main.pomidoro_get_remaining_time() / 1000) % 60));
+                break;
+            case 2:
+                timeText.setText(
+                        Long.toString((Main.timer_get_remaining_time()/ (1000 * 60)) % 60) + ":" +
+                                Long.toString((Main.timer_get_remaining_time() / 1000) % 60));
+
+                break;
+            case 3:
+                timeText.setText(
+                        Long.toString((Main.stopwatch_get_past_time() / (1000 * 60)) % 60) + ":" +
+                                Long.toString((Main.stopwatch_get_past_time() / 1000) % 60));
+
+                break;
+            case 4:
+                timeText.setText(
+                        Long.toString((Main.pomidoro_get_remaining_time() / (1000 * 60)) % 60) + ":" +
+                                Long.toString((Main.pomidoro_get_remaining_time() / 1000) % 60));
+
+                break;
+
+
+            //Long.toString((Main.pomidoro_get_remaining_time()) % 1000));
+        }
     }
 
     private static final Text timeText = new Text(Long.toString((Main.pomidoro_get_remaining_time() % 1000 * 60 * 60 * 24) / 1000 * 60 * 60) + ":" +
             Long.toString((Main.pomidoro_get_remaining_time() % 1000 * 60 * 60) / 1000 * 60) + ":" +
             Long.toString((Main.pomidoro_get_remaining_time() % 1000 * 60) / 1000));
+
+
 
     public static void ChoiceF(int choice) { //выбор пользователем одной из 4х функций (визуал)
         try {
@@ -52,6 +82,7 @@ public class Output_to_the_screen {
             StartBut.setStyle("-fx-background-color: transparent");
             StopBut.setStyle("-fx-background-color: transparent");
             PauseBut.setStyle("-fx-background-color: transparent");
+            Selected = choice;
 
              switch (choice) {
 
@@ -66,13 +97,17 @@ public class Output_to_the_screen {
                     timeButtFuncts.setLayoutY(255);
                     groupOfFuncts.getChildren().add(timeButtFuncts);
                     PlusFiveMinutes.setStyle("-fx-background-color: transparent");
+                    break;
                 case 2:
-                    StartBut.setOnAction(event -> Main.pomidor_start_mechanism()); // Сюда и ниже прописать нужную функцию
-                    StopBut.setOnAction(event -> Main.pomidor_stop_mechanism());
-                    PauseBut.setOnAction(event -> Main.pomidor_pause_mechanism());
+                    StartBut.setOnAction(event -> Main.timer_start_mechanism()); // Сюда и ниже прописать нужную функцию
+                    StopBut.setOnAction(event -> Main.timer_stop_mechanism(60));
+                    PauseBut.setOnAction(event -> Main.timer_pause_mechanism());
                     Button Plus15sec = new Button("+15 сек.");
+                    Plus15sec.setOnAction(event -> Main.timer_plusTime_mechanism(-15000));
                     Button Plus60sec = new Button("+60 сек.");
+                    Plus60sec.setOnAction(event -> Main.timer_plusTime_mechanism(-60000));
                     Button Plus10min = new Button("+10 min.");
+                    Plus10min.setOnAction(event -> Main.timer_plusTime_mechanism(-10*60000));
                     timeButtFuncts.getChildren().addAll(StartBut, StopBut, PauseBut, Plus15sec, Plus60sec, Plus10min);
                     timeButtFuncts.setSpacing(5);
                     timeButtFuncts.setLayoutX(130);
@@ -81,15 +116,17 @@ public class Output_to_the_screen {
                     Plus15sec.setStyle("-fx-background-color: transparent");
                     Plus60sec.setStyle("-fx-background-color: transparent");
                     Plus10min.setStyle("-fx-background-color: transparent");
+                    break;
                 case 3:
-                    StartBut.setOnAction(event -> Main.pomidor_start_mechanism());
-                    StopBut.setOnAction(event -> Main.pomidor_stop_mechanism());
-                    PauseBut.setOnAction(event -> Main.pomidor_pause_mechanism());
+                    StartBut.setOnAction(event -> Main.stopwatch_start_mechanism());
+                    StopBut.setOnAction(event -> Main.stopwatch_stop_mechanism());
+                    PauseBut.setOnAction(event -> Main.stopwatch_stop_mechanism());
                     timeButtFuncts.getChildren().addAll(StartBut, StopBut, PauseBut);
                     timeButtFuncts.setSpacing(10);
                     timeButtFuncts.setLayoutX(220);
                     timeButtFuncts.setLayoutY(255);
                     groupOfFuncts.getChildren().add(timeButtFuncts);
+                    break;
                 case 4:
 
                     StartBut.setOnAction(event -> Main.pomidor_start_mechanism());
@@ -99,6 +136,7 @@ public class Output_to_the_screen {
                     timeButtFuncts.setLayoutX(250);
                     timeButtFuncts.setLayoutY(255);
                     groupOfFuncts.getChildren().add(timeButtFuncts);
+                    break;
             }
         } catch (Exception e) {
 
@@ -106,6 +144,12 @@ public class Output_to_the_screen {
 
     }
     public static void start_output_to_the_screen(Stage stage) throws Exception {
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                                    public void handle(WindowEvent we) {
+                                        Main.full_stop();
+                                    }
+                                });
+
         groupOfFuncts = new Group();
         Group groupOfAll = new Group(groupOfFuncts);
         Rectangle ClockZone = new Rectangle(330, 200, Color.GAINSBORO); //поле заднего фона часов
