@@ -67,16 +67,16 @@ public class Main extends Application {
         // write your code her
     }
 
+
     public static one_profile get_now_profile(){
         return now_profile_pomidoro;
     }
+    public static boolean profiles_get_theme(){return profiles.get_theme();}
+    public static void profiles_set_theme(boolean set){profiles.set_theme(set);}
 
     public static long pomidoro_get_remaining_time(){return Mpomidoro.get_remaining_time();}
-
     public static void pomidor_finish(){windowTest.windw("pomidor finish");}
-
     public static void timer_finish(){windowTest.windw("timer finish");}
-
     public static void alarmclock_finish(){windowTest.windw("alarmclock finish");}
 
     public static void pomidor_stop_mechanism(){Mpomidoro.stop_mechanism(1000*60*40,1000*60*10);}
@@ -96,6 +96,8 @@ public class Main extends Application {
     public static void stopwatch_pause_mechanism (){Mstopwatch.pause_mechanism();}
     public static void stopwatch_stop_mechanism (){Mstopwatch.stop_mechanism();}
     public static long stopwatch_get_past_time (){return Mstopwatch.get_past_time();}
+
+
 
 
 
