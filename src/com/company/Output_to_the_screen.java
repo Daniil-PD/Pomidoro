@@ -206,12 +206,10 @@ public class Output_to_the_screen {
 
         RadioMenuItem Lightheme = new RadioMenuItem("Светлая тема"); // список меню настройки
         RadioMenuItem Darktheme = new RadioMenuItem("Темная тема");
-        RadioMenuItem autoTheme = new RadioMenuItem("Тема по умолчанию");
         ToggleGroup toggleGroup = new ToggleGroup(); // создаём группу выбора для тем (галочка д.б. только у 1-ой)
         Lightheme.setToggleGroup(toggleGroup); //
         Darktheme.setToggleGroup(toggleGroup);
-        autoTheme.setToggleGroup(toggleGroup);
-        menuSettings.getItems().addAll(Lightheme, Darktheme, autoTheme); // группируем настройки
+        menuSettings.getItems().addAll(Lightheme, Darktheme); // группируем настройки
         menuBar.getMenus().addAll(menuSettings, menuProfile, menuHelp); // группируем всё меню
         menuBar.setMinWidth(500);
         groupOfAll.getChildren().add(menuBar);
@@ -328,7 +326,7 @@ public class Output_to_the_screen {
 
         Scene scene = new Scene(groupOfAll, 500, 300);
 
-        toggleGroup.selectToggle(autoTheme);
+
         stage.setResizable(false);
 
         stage.setTitle("Time cool app");//как назовём спектакль?)
@@ -392,6 +390,7 @@ public class Output_to_the_screen {
             public void handle(ActionEvent actionEvent) {
                 groupOfFuncts.getChildren().clear();
                 ChoiceF(1);
+
             }
         });
 
