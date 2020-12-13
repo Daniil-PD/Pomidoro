@@ -8,10 +8,10 @@ public class Main extends Application {
 
     static one_profile now_profile_pomidoro;
     static boolean debag_mode = false;
-    static Mechanism_pomidoro Mpomidoro = new Mechanism_pomidoro();
-    static Mechanism_timer Mtimer = new Mechanism_timer(1000*60*10);
-    static Mechanism_alarmclock Malarmclock = new Mechanism_alarmclock(18*50*216000*1000);
-    static Mechanism_stopwatch Mstopwatch = new Mechanism_stopwatch();
+    static Mechanism_pomidoro Mpomidoro;
+    static Mechanism_timer Mtimer;
+    static Mechanism_alarmclock Malarmclock;
+    static Mechanism_stopwatch Mstopwatch;
 
 
     public static void main(String[] args) {
@@ -26,12 +26,12 @@ public class Main extends Application {
 
         if (debag_mode) System.out.println("Инициализация классов..");
         User_profiles profiles = new User_profiles();
+        Mpomidoro = new Mechanism_pomidoro();
+        Mtimer = new Mechanism_timer(1000*60*10);
+        Malarmclock = new Mechanism_alarmclock(18*50*216000*1000);
+        Mstopwatch = new Mechanism_stopwatch();
+
         Output_to_the_screen screen = new Output_to_the_screen();
-        Mpomidoro.stop_mechanism(1000*60*40,1000*60*10);
-        //Mpomidoro.start_mechanism();
-        //Mechanism_timer Mtimer = new Mechanism_timer(1000*60*10);
-        //Mechanism_alarmclock Malarmclock = new Mechanism_alarmclock(18*50*216000*1000);
-        //Mechanism_stopwatch Mstopwatch = new Mechanism_stopwatch();
 
 
         if (debag_mode) System.out.println("Подготовка к старту");
