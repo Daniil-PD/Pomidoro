@@ -25,6 +25,7 @@ public class AddProfile {
         LightTheme.setToggleGroup(ThemeButtons);
         DarkTheme.setToggleGroup(ThemeButtons);
         ThemeButtons.selectToggle(LightTheme);
+        Button Okbut = new Button("Ок");
 
 
         GridPane ProfileGrid = new GridPane();
