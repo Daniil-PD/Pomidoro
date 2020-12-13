@@ -15,6 +15,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -27,7 +28,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.WindowEvent;
 
-import java.awt.event.MouseEvent;
+
 import java.io.File;
 
 public class Output_to_the_screen {
@@ -120,11 +121,12 @@ public class Output_to_the_screen {
                 case 3:
                     StartBut.setOnAction(event -> Main.stopwatch_start_mechanism());
                     StopBut.setOnAction(event -> Main.stopwatch_stop_mechanism());
-                    PauseBut.setOnAction(event -> Main.stopwatch_stop_mechanism());
+                    PauseBut.setOnAction(event -> Main.stopwatch_pause_mechanism());
                     timeButtFuncts.getChildren().addAll(StartBut, StopBut, PauseBut);
                     timeButtFuncts.setSpacing(10);
                     timeButtFuncts.setLayoutX(220);
                     timeButtFuncts.setLayoutY(255);
+                    timeText.setLayoutX(30);
                     groupOfFuncts.getChildren().add(timeButtFuncts);
                     break;
                 case 4:
@@ -168,8 +170,6 @@ public class Output_to_the_screen {
         menuHelp1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                String musicFile = "Another One Bites The Dust.mp3";     // For example
-
                 Media sound = new Media(new File("Another One Bites The Dust.mp3").toURI().toString());
                 MediaPlayer mediaPlayer = new MediaPlayer(sound);
                 mediaPlayer.play();
@@ -181,18 +181,19 @@ public class Output_to_the_screen {
         menuHelp.getItems().add(menuHelp1);
 
 
-        MenuItem DeleteProfile = new MenuItem("Удалить профиль"); // список меню профиля
-        /* ТУТ обрабатываем события кнопки DeleteProfile
-        DeleteProfile.setOnAction(new EventHandler<ActionEvent>() { // обратите внимание на методы setOn...
-            @Override
-            public void handle(ActionEvent actionEvent) {
-            }
-        });
-        */
         MenuItem AddProfile1 = new MenuItem("Добавить профиль");
         AddProfile1.setOnAction(event -> AddProfile.AddProfileWindow("Добавление профиля"));
-        MenuItem ChangeProfile = new MenuItem("Сменить текущий профиль");
-        menuProfile.getItems().addAll(AddProfile1, DeleteProfile, ChangeProfile); // группируем профиль
+        MenuItem ChangeProfile = new MenuItem("Удалить/Сменить текущий профиль");
+        ChangeProfile.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                ReviewProfile.RevProf("Сменить или удалить профиль");
+            }
+        });
+
+
+
+        menuProfile.getItems().addAll(AddProfile1, ChangeProfile); // группируем профиль
 
         RadioMenuItem Lightheme = new RadioMenuItem("Светлая тема"); // список меню настройки
         RadioMenuItem Darktheme = new RadioMenuItem("Темная тема");
@@ -220,6 +221,24 @@ public class Output_to_the_screen {
         SecRecorder.setToggleGroup(setts);
         AlClock.setToggleGroup(setts);
         setts.selectToggle(Pomodoro);
+
+
+
+
+        /*
+        DropShadow shadowInButtn = new DropShadow();
+        Pomodoro.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                Pomodoro.setStyle("-fx-background-color: GREY");
+            }
+        });
+        Pomodoro.addEventHandler(MouseEvent.MOUSE_, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                Pomodoro.setStyle("-fx-background-color: WHITESMOKE");
+            }
+        }); */
 
 
 
@@ -265,7 +284,7 @@ public class Output_to_the_screen {
         });
         thread.setDaemon(true);
         thread.start();
-        timeText.setX(160);
+        timeText.setX(200);
         timeText.setY(160);
         timeText.setFont(new Font(80));
         groupOfAll.getChildren().add(timeText);
@@ -284,6 +303,7 @@ public class Output_to_the_screen {
 
         stage.setTitle("Time cool app");//как назовём спектакль?)
         stage.setScene(scene); //The show must begin
+        //scene.getStylesheets().add("file:DarkStyle.css"); //стиль не работает при смене функций, лучше не использовать..
         stage.getIcons().add(new Image("file:64.png"));
 
         stage.show();//окрываем занавес
