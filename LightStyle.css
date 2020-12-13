@@ -1,7 +1,7 @@
 .root {
 
-    -fx-accent: #584866; // выделение при наведении мыши
-    -fx-focus-color: #584866;
+    -fx-accent: #e2dae6; // выделение при наведении мыши
+    -fx-focus-color: #e2dae6;
 }
 .context-menu {
   -fx-background-color: #4e3f5c;

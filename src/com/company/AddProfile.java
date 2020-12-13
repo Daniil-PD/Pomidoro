@@ -1,5 +1,8 @@
+/*
+*Окно добавления профиля
+* void AddProfileWindow (String title)      : Получение данных нового профиля от пользователя
+ */
 package com.company;
-
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.Group;

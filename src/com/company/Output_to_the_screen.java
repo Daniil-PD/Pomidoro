@@ -1,3 +1,10 @@
+/*
+ *Вывод на экран
+ *Методы:
+ * - void updat_timeText()                        : Переводит значения времени (из Main) в строку
+ * - void ChoiceF(int choice)                     : Осуществляет смену кнопок под основные функции
+ * - void start_output_to_the_screen(Stage stage) : Вывод основного GUI
+ */
 package com.company;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -14,6 +21,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -26,11 +34,11 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
 
 import java.io.File;
-
 public class Output_to_the_screen {
 
     private static int Selected = 1;
@@ -222,24 +230,52 @@ public class Output_to_the_screen {
         SecRecorder.setToggleGroup(setts);
         AlClock.setToggleGroup(setts);
         setts.selectToggle(Pomodoro);
-
-
-
-
-        /*
         DropShadow shadowInButtn = new DropShadow();
+        Pomodoro.setEffect(shadowInButtn);
+
+
+
+
+
         Pomodoro.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                Pomodoro.setStyle("-fx-background-color: GREY");
+                AlClock.setEffect(null);
+                SecRecorder.setEffect(null);
+                Timer.setEffect(null);
+                Pomodoro.setEffect(shadowInButtn);
             }
         });
-        Pomodoro.addEventHandler(MouseEvent.MOUSE_, new EventHandler<MouseEvent>() {
+
+        Timer.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                Pomodoro.setStyle("-fx-background-color: WHITESMOKE");
+                AlClock.setEffect(null);
+                SecRecorder.setEffect(null);
+                Pomodoro.setEffect(null);
+                Timer.setEffect(shadowInButtn);
             }
-        }); */
+        });
+        SecRecorder.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                AlClock.setEffect(null);
+                SecRecorder.setEffect(shadowInButtn);
+                Pomodoro.setEffect(null);
+                Timer.setEffect(null);
+            }
+        });
+        AlClock.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                AlClock.setEffect(shadowInButtn);
+                SecRecorder.setEffect(null);
+                Pomodoro.setEffect(null);
+                Timer.setEffect(null);
+            }
+        });
+
+
 
 
 
@@ -285,7 +321,7 @@ public class Output_to_the_screen {
         });
         thread.setDaemon(true);
         thread.start();
-        timeText.setX(200);
+        timeText.setX(190);
         timeText.setY(160);
         timeText.setFont(new Font(80));
         groupOfAll.getChildren().add(timeText);
@@ -304,19 +340,16 @@ public class Output_to_the_screen {
 
         stage.setTitle("Time cool app");//как назовём спектакль?)
         stage.setScene(scene); //The show must begin
-        //scene.getStylesheets().add("file:DarkStyle.css"); //стиль не работает при смене функций, лучше не использовать..
         stage.getIcons().add(new Image("file:64.png"));
 
         stage.show();//окрываем занавес
         //ПОКА ТЕМЫ НЕ РАБОТАЮТ!
-       /*  Lightheme.setOnAction(new EventHandler<ActionEvent>() {
+         Lightheme.setOnAction(new EventHandler<ActionEvent>() {
            @Override
             public void handle(ActionEvent actionEvent) {
                 scene.setFill(Color.WHITE);
 
-                StartBut.setTextFill(Color.BLACK);
-                StopBut.setTextFill(Color.BLACK);
-                PauseBut.setTextFill(Color.BLACK);
+
                 AlClock.setTextFill(Color.BLACK);
                 Pomodoro.setTextFill(Color.BLACK);
                 SecRecorder.setTextFill(Color.BLACK);
@@ -328,21 +361,32 @@ public class Output_to_the_screen {
         Darktheme.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                scene.setFill(Color.DIMGREY);
+                scene.getStylesheets().add("file:DarkStyle.css");
+                scene.setFill(Color.web("#200f33"));
+                shadowInButtn.setColor(Color.GRAY);
+                setts.selectToggle(Pomodoro);
 
-                StartBut.setTextFill(Color.MISTYROSE);
-                StopBut.setTextFill(Color.MISTYROSE);
-                PauseBut.setTextFill(Color.MISTYROSE);
+
+
                 AlClock.setTextFill(Color.LIGHTGREY);
                 Pomodoro.setTextFill(Color.LIGHTGREY);
                 SecRecorder.setTextFill(Color.LIGHTGREY);
                 Timer.setTextFill(Color.LIGHTGREY);
                 ClockZone.setFill(Color.GREY);
+                AlClock.setStyle("-fx-background-color: #40334a");
+                Pomodoro.setStyle("-fx-background-color: #40334a");
+                SecRecorder.setStyle("-fx-background-color: #40334a");
+                Timer.setStyle("-fx-background-color: #40334a");
+                ClockZone.setFill(Color.web ("#362c40"));
+                timeText.setFill(Color.web("#d1cbd6"));
+
+
+                menuBar.setStyle("-fx-background-color: #50405e");
 
 
             }
         });
-*/
+
         Pomodoro.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
