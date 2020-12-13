@@ -347,14 +347,25 @@ public class Output_to_the_screen {
          Lightheme.setOnAction(new EventHandler<ActionEvent>() {
            @Override
             public void handle(ActionEvent actionEvent) {
-                scene.setFill(Color.WHITE);
+               scene.setFill(Color.web("#f1f0f7"));
+               scene.getStylesheets().add("file:LightStyle.css");
+               shadowInButtn.setColor(Color.BLACK);
+               setts.selectToggle(Pomodoro);
 
 
-                AlClock.setTextFill(Color.BLACK);
-                Pomodoro.setTextFill(Color.BLACK);
-                SecRecorder.setTextFill(Color.BLACK);
-                Timer.setTextFill(Color.BLACK);
-                ClockZone.setFill(Color.GAINSBORO);
+                AlClock.setTextFill(Color.web("#27203b"));
+                Pomodoro.setTextFill(Color.web("#27203b"));
+                SecRecorder.setTextFill(Color.web("#27203b"));
+                Timer.setTextFill(Color.web("#27203b"));
+
+               AlClock.setStyle("-fx-background-color: #b3afc4");
+               Pomodoro.setStyle("-fx-background-color: #b3afc4");
+               SecRecorder.setStyle("-fx-background-color: #b3afc4");
+               Timer.setStyle("-fx-background-color: #b3afc4");
+               timeText.setFill(Color.web("#27203b"));
+
+               ClockZone.setFill(Color.WHITE);
+               menuBar.setStyle("-fx-background-color: #e7e4f2");
 
             }
         });
@@ -372,7 +383,6 @@ public class Output_to_the_screen {
                 Pomodoro.setTextFill(Color.LIGHTGREY);
                 SecRecorder.setTextFill(Color.LIGHTGREY);
                 Timer.setTextFill(Color.LIGHTGREY);
-                ClockZone.setFill(Color.GREY);
                 AlClock.setStyle("-fx-background-color: #40334a");
                 Pomodoro.setStyle("-fx-background-color: #40334a");
                 SecRecorder.setStyle("-fx-background-color: #40334a");
