@@ -60,7 +60,7 @@ public class Main extends Application {
 //
 //        }
 
-        // write your code here
+        // write your code her
     }
 
     public static one_profile get_now_profile(){
@@ -77,9 +77,9 @@ public class Main extends Application {
 
     public static void pomidor_stop_mechanism(){Mpomidoro.stop_mechanism(1000*60*40,1000*60*10);}
     public static void pomidor_pause_mechanism(){Mpomidoro.pause_mechanism();}
-    public static void pomidor_start_mechanism(){
-        Mpomidoro.start_mechanism();
-    }
+    public static void pomidor_start_mechanism(){Mpomidoro.start_mechanism();}
+    public static void pomidor_plusTime_mechanism(long time){Mpomidoro.plusTime_mechanism(time);}
+
 
     public static void timer_state_mechanism(){Mtimer.state_mechanism();}
     public static void timer_start_mechanism(){Mtimer.start_mechanism();}
