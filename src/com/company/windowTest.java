@@ -9,11 +9,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class windowTest {
-    public static void windw ()
+    public static void windw (String str)
     {
         Stage wnStage = new Stage();
         wnStage.initModality(Modality.APPLICATION_MODAL); // блокировка просмотра основного окна
-        Label text = new Label("Сюда");
+        Label text = new Label(str);
 
         Button Ok = new Button("Oк");
         BorderPane pane = new BorderPane();
