@@ -92,6 +92,7 @@ public class Output_to_the_screen {
                     StopBut.setOnAction(event -> Main.pomidor_stop_mechanism());
                     PauseBut.setOnAction(event -> Main.pomidor_pause_mechanism());
                     Button PlusFiveMinutes = new Button("+5 минут");
+
                     timeButtFuncts.getChildren().addAll(StartBut, StopBut, PauseBut, PlusFiveMinutes);
                     timeButtFuncts.setSpacing(10);
                     timeButtFuncts.setLayoutX(190);
@@ -375,3 +376,4 @@ public class Output_to_the_screen {
 
     }
 }
+
