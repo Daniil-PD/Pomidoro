@@ -100,6 +100,7 @@ public class Output_to_the_screen {
                     StopBut.setOnAction(event -> Main.pomidor_stop_mechanism());
                     PauseBut.setOnAction(event -> Main.pomidor_pause_mechanism());
                     Button PlusFiveMinutes = new Button("+5 минут");
+                    PlusFiveMinutes.setOnAction(event -> Main.pomidor_plusTime_mechanism(5*60*1000));
 
                     timeButtFuncts.getChildren().addAll(StartBut, StopBut, PauseBut, PlusFiveMinutes);
                     timeButtFuncts.setSpacing(10);
