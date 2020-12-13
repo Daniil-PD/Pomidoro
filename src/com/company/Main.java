@@ -25,7 +25,7 @@ public class Main extends Application {
         if (debag_mode) System.out.println("Start");
 
         if (debag_mode) System.out.println("Инициализация классов..");
-        User_profiles profiles = new User_profiles();
+        Settings profiles = new Settings();
         Mpomidoro = new Mechanism_pomidoro();
         Mtimer = new Mechanism_timer(1000*60*10);
         Malarmclock = new Mechanism_alarmclock(18*50*216000*1000);
