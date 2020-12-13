@@ -163,7 +163,7 @@ public class Output_to_the_screen {
 
         groupOfFuncts = new Group();
         Group groupOfAll = new Group(groupOfFuncts);
-        Rectangle ClockZone = new Rectangle(330, 200, Color.GAINSBORO); //поле заднего фона часов
+        Rectangle ClockZone = new Rectangle(330, 200); //поле заднего фона часов
         ClockZone.setX(140);
         ClockZone.setY(40);
         ClockZone.setArcHeight(105);
@@ -326,13 +326,6 @@ public class Output_to_the_screen {
         timeText.setFont(new Font(80));
         groupOfAll.getChildren().add(timeText);
 
-
-        /*AlClock.setStyle("-fx-background-color: WHITESMOKE");
-        Pomodoro.setStyle("-fx-background-color: WHITESMOKE");
-        SecRecorder.setStyle("-fx-background-color: WHITESMOKE");
-        Timer.setStyle("-fx-background-color: WHITESMOKE"); */
-
-
         Scene scene = new Scene(groupOfAll, 500, 300);
 
         toggleGroup.selectToggle(autoTheme);
@@ -342,11 +335,11 @@ public class Output_to_the_screen {
         stage.setScene(scene); //The show must begin
         stage.getIcons().add(new Image("file:64.png"));
 
-        stage.show();//окрываем занавес
-        //ПОКА ТЕМЫ НЕ РАБОТАЮТ!
+        stage.show();
          Lightheme.setOnAction(new EventHandler<ActionEvent>() {
            @Override
             public void handle(ActionEvent actionEvent) {
+               scene.getStylesheets().clear();
                scene.setFill(Color.web("#f1f0f7"));
                scene.getStylesheets().add("file:LightStyle.css");
                shadowInButtn.setColor(Color.BLACK);
@@ -358,10 +351,10 @@ public class Output_to_the_screen {
                 SecRecorder.setTextFill(Color.web("#27203b"));
                 Timer.setTextFill(Color.web("#27203b"));
 
-               AlClock.setStyle("-fx-background-color: #b3afc4");
-               Pomodoro.setStyle("-fx-background-color: #b3afc4");
-               SecRecorder.setStyle("-fx-background-color: #b3afc4");
-               Timer.setStyle("-fx-background-color: #b3afc4");
+               AlClock.setStyle("-fx-background-color: #c8cadb");
+               Pomodoro.setStyle("-fx-background-color: #c8cadb");
+               SecRecorder.setStyle("-fx-background-color: #c8cadb");
+               Timer.setStyle("-fx-background-color: #c8cadb");
                timeText.setFill(Color.web("#27203b"));
 
                ClockZone.setFill(Color.WHITE);
@@ -372,12 +365,11 @@ public class Output_to_the_screen {
         Darktheme.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                scene.getStylesheets().clear();
                 scene.getStylesheets().add("file:DarkStyle.css");
                 scene.setFill(Color.web("#200f33"));
                 shadowInButtn.setColor(Color.GRAY);
                 setts.selectToggle(Pomodoro);
-
-
 
                 AlClock.setTextFill(Color.LIGHTGREY);
                 Pomodoro.setTextFill(Color.LIGHTGREY);
@@ -389,8 +381,6 @@ public class Output_to_the_screen {
                 Timer.setStyle("-fx-background-color: #40334a");
                 ClockZone.setFill(Color.web ("#362c40"));
                 timeText.setFill(Color.web("#d1cbd6"));
-
-
                 menuBar.setStyle("-fx-background-color: #50405e");
 
 

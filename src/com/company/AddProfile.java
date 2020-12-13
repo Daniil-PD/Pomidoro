@@ -24,6 +24,7 @@ public class AddProfile {
         RadioButton DarkTheme = new RadioButton("Темная тема");
         LightTheme.setToggleGroup(ThemeButtons);
         DarkTheme.setToggleGroup(ThemeButtons);
+        ThemeButtons.selectToggle(LightTheme);
 
 
         GridPane ProfileGrid = new GridPane();
