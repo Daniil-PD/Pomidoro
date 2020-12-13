@@ -1,6 +1,4 @@
-name_profile: profile1
-work_timer: 1800
-rest_timer: 1000
+theme: true 
 
 name_profile: profile2
 work_timer: 70
@@ -14,6 +12,3 @@ name_profile: profile4
 work_timer: 35
 rest_timer: 15
 
-name_profile: profile5
-work_timer: 50
-rest_timer: 10

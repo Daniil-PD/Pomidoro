@@ -12,6 +12,7 @@ public class Main extends Application {
     static Mechanism_timer Mtimer;
     static Mechanism_alarmclock Malarmclock;
     static Mechanism_stopwatch Mstopwatch;
+    static Settings profiles;
 
 
     public static void main(String[] args) {
@@ -25,7 +26,7 @@ public class Main extends Application {
         if (debag_mode) System.out.println("Start");
 
         if (debag_mode) System.out.println("Инициализация классов..");
-        Settings profiles = new Settings();
+        profiles = new Settings();
         Mpomidoro = new Mechanism_pomidoro();
         Mtimer = new Mechanism_timer(1000*60*10);
         Malarmclock = new Mechanism_alarmclock(18*50*216000*1000);
@@ -44,6 +45,9 @@ public class Main extends Application {
         if (debag_mode) System.out.println("Старт классов");
         //Mpomidoro.stop_mechanism(now_profile_pomidoro.work_timer,now_profile_pomidoro.rest_timer); //
         Mpomidoro.start();//запускаем поток
+        //Mstopwatch.start();
+
+        profiles.full_rewrite_data();
 
 
         Application.launch(args); // запуск графики
@@ -111,6 +115,7 @@ public class Main extends Application {
         Mtimer.disable();
         Malarmclock.disable();
         Mstopwatch.disable();
+        profiles.full_rewrite_data();
     }
 }
 

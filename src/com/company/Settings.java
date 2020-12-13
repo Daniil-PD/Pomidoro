@@ -28,6 +28,15 @@ public class Settings {
         update_data();
     }
 
+    public boolean get_theme(){
+        return theme;
+    }
+
+    public void set_theme(boolean set){
+        theme = set;
+        full_rewrite_data();
+    }
+
     public Settings(String path_to_profile) {
         this.path_to_profile = path_to_profile;
         update_data();
@@ -59,21 +68,32 @@ public class Settings {
             //return false;
         }
 
+        try (FileWriter writer = new FileWriter(path_to_profile + "profiles.txt", true)) //открываем файл для записи
+        {
+            if (theme) {
+                writer.write("theme: true\n\n");
+            } else {
+                writer.write("theme: false\n\n");
+            }
+
+            writer.flush();
+
+
         for (one_profile G : profiles) { //записываем каждый профиль
 
-            try (FileWriter writer = new FileWriter(path_to_profile + "profiles.txt", true)) //открываем файл для записи
-            {
+
                 String string_to_file = "name_profile: " + G.name_profile + "\n" +
                         "work_timer: " + G.work_timer + "\n" +
                         "rest_timer: " + G.rest_timer + "\n\n"; // формируем запись о новом профиле
                 writer.write(string_to_file);
                 writer.flush();
-            } catch (IOException ex) {
 
-                System.out.println(ex.getMessage());
-                return false;
-            }
 
+        }
+        } catch (IOException ex) {
+
+            System.out.println(ex.getMessage());
+            return false;
         }
         boolean flag_to_qveri = false;
         for (int i = 0; i < 10; i++) {
@@ -82,9 +102,61 @@ public class Settings {
                 break;
             }
         }
-        update_data();
+        full_rewrite_data();
         return flag_to_qveri;
     }
+    boolean full_rewrite_data() {
+        update_data();
+
+        try (FileWriter writer = new FileWriter(path_to_profile + "profiles.txt", false)) //открываем файл для записи
+        {
+            writer.write(""); //очишаем файл
+            writer.flush();
+        } catch (Exception ex) {
+
+            System.out.println(ex.getMessage());
+            //return false;
+        }
+
+        try (FileWriter writer = new FileWriter(path_to_profile + "profiles.txt", true)) //открываем файл для записи
+        {
+            if (theme) {
+                writer.write("theme: true \n\n");
+            } else {
+                writer.write("theme: false \n\n");
+            }
+
+            writer.flush();
+
+
+            for (one_profile G : profiles) { //записываем каждый профиль
+
+
+                String string_to_file = "name_profile: " + G.name_profile + "\n" +
+                        "work_timer: " + G.work_timer + "\n" +
+                        "rest_timer: " + G.rest_timer + "\n\n"; // формируем запись о новом профиле
+                writer.write(string_to_file);
+                writer.flush();
+
+
+            }
+        } catch (IOException ex) {
+
+            System.out.println(ex.getMessage());
+            return false;
+        }
+        boolean flag_to_qveri = false;
+        for (int i = 0; i < 10; i++) {
+            if (update_data()) {
+                flag_to_qveri = true;
+                break;
+            }
+        }
+
+
+        return true;
+    }
+
 
     private boolean update_data () {
         String[] words;
@@ -96,6 +168,21 @@ public class Settings {
             String line = "";
             Scanner scan = new Scanner(reader);
 
+            if (scan.hasNextLine()){
+                line = scan.nextLine();
+                if (!line.isEmpty()){
+                    words = line.split(" ");
+                    if (words.length >= 2) {
+                        if (words[0] == "theme:"){
+                            if (words[1] == "true"){
+                                theme = true;
+                            }else{
+                                theme = false;
+                            }
+                        }
+                    }
+                }
+            }
 
             while (scan.hasNextLine()) {
 
