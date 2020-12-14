@@ -77,7 +77,7 @@ public class Mechanism_pomidoro extends Thread {
     public boolean pause_mechanism(){
 
         if(!flag_pause) {
-            time_that_passed =  System.currentTimeMillis()-time_start ;
+           time_that_passed =  System.currentTimeMillis()-time_start;
             flag_pause = true;
         }
 
