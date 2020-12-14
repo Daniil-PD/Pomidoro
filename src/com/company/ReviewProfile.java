@@ -50,7 +50,6 @@ public class ReviewProfile {
 
         Scene sceneReview = new Scene(root,470, 290);
 
-
         sceneReview.getStylesheets().add("file:DarkStyle.css");
         root.setStyle("-fx-background-color: #200f33");
         changeProf.setTextFill(Color.LIGHTGREY);
@@ -58,8 +57,6 @@ public class ReviewProfile {
         delProf.setTextFill(Color.LIGHTGREY);
         delProf.setStyle("-fx-background-color: #40334a");
         nameColumn.setStyle("#d1cbd6");//+-
-
-
 
 
         stageProf.setScene(sceneReview);

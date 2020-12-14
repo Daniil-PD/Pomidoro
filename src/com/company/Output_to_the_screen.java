@@ -183,14 +183,16 @@ public class Output_to_the_screen {
         toggleGr = new ToggleGroup(); // создаём группу выбора для тем (галочка д.б. только у 1-ой)
         Lightheme.setToggleGroup(toggleGr);
         Darktheme.setToggleGroup(toggleGr);
-        toggleGr.selectToggle(Darktheme);
+        if (!Main.profiles_get_theme())
+           toggleGr.selectToggle(Darktheme);
+        else
+            toggleGr.selectToggle(Lightheme);
         menuSettings.getItems().addAll(Lightheme, Darktheme); // группируем настройки
         menuBar.getMenus().addAll(menuSettings, menuProfile, menuHelp); // группируем всё меню
         menuBar.setMinWidth(500);
         groupOfAll.getChildren().add(menuBar);
 
 
-        // добавляем меню к актёрам
         VBox Settings = new VBox();
         ToggleButton Pomodoro = new ToggleButton("Помодоро");
         ToggleButton Timer = new ToggleButton("Таймер");
