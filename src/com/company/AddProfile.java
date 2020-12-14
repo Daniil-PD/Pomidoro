@@ -38,7 +38,10 @@ public class AddProfile {
         ProfileGrid.setHalignment(NameLabel, HPos.RIGHT);
 
 
-        Okbut.setOnAction(event->NewProfileStage.close());
+        Okbut.setOnAction(event->{
+            NewProfileStage.close();
+
+        });
 
 
 
@@ -89,13 +92,14 @@ public class AddProfile {
         NewProfileStage.setTitle(title);
         NewProfileStage.showAndWait();
         Okbut.setOnAction(new EventHandler<ActionEvent>() {
+
+
             @Override
             public void handle(ActionEvent event) {
                 NewPersonProfile.clear();
                 NewPersonProfile.work_timer = (int)MinuteTimer.getValue();
                 NewPersonProfile.rest_timer = (int)restTimer.getValue();
                 NewPersonProfile.name_profile = NameField.getText();
-
                 Main.profiles_add_profile(NewPersonProfile);
                 MinuteTimer.valueProperty().addListener(new ChangeListener<Number>() {
                     public void changed(ObservableValue<?extends Number> observable, Number oldValue, Number newValue){
