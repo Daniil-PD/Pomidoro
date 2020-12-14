@@ -46,6 +46,7 @@ public class Main extends Application {
         //Mpomidoro.stop_mechanism(now_profile_pomidoro.work_timer,now_profile_pomidoro.rest_timer); //
         Mpomidoro.start();//запускаем поток
         //Mstopwatch.start();
+        Mtimer.start();
 
         profiles.full_rewrite_data();
 
