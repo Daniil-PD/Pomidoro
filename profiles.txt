@@ -1,4 +1,4 @@
-theme: true 
+theme: false 
 
 name_profile: profile2
 work_timer: 70
@@ -19,4 +19,8 @@ rest_timer: 15
 name_profile: аыа
 work_timer: 45
 rest_timer: 15
+
+name_profile: 123
+work_timer: 75
+rest_timer: 8
 
