@@ -137,7 +137,7 @@ public class Output_to_the_screen {
 
         groupOfFuncts = new Group();
         Group groupOfAll = new Group(groupOfFuncts);
-        Rectangle ClockZone = new Rectangle(330, 200); //поле заднего фона часов
+        Rectangle ClockZone = new Rectangle(350, 200); //поле заднего фона часов
         ClockZone.setX(140);
         ClockZone.setY(40);
         ClockZone.setArcHeight(105);
@@ -473,7 +473,7 @@ public class Output_to_the_screen {
                     timeButtFuncts.setSpacing(10);
                     timeButtFuncts.setLayoutX(220);
                     timeButtFuncts.setLayoutY(255);
-                    timeText.setLayoutX(30);
+                    timeText.setLayoutX(-10);
                     groupOfFuncts.getChildren().add(timeButtFuncts);
                     StartBut.setTextFill(Color.INDIANRED);
                     StopBut.setTextFill(Color.INDIANRED);

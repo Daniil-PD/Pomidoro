@@ -16,3 +16,7 @@ name_profile: 123
 work_timer: 45
 rest_timer: 15
 
+name_profile: аыа
+work_timer: 45
+rest_timer: 15
+

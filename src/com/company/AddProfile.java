@@ -13,6 +13,8 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class AddProfile {
@@ -69,6 +71,7 @@ public class AddProfile {
 
 
 
+
         Slider restTimer = new Slider(0,30,15);
 
         restTimer.setShowTickLabels(true);
@@ -80,8 +83,29 @@ public class AddProfile {
         restTimer.setMinSize(250, 50);
         restTimer.setLayoutX(190);
         restTimer.setLayoutY(200);
-        Group AllWindow = new Group();
+        Pane AllWindow = new Pane();
         AllWindow.getChildren().addAll(ProfileGrid,restTimer,MinuteTimer);
+        if(!Output_to_the_screen.theme)
+        {
+            AllWindow.setStyle("-fx-background-color: #200f33");
+            Okbut.setTextFill(Color.LIGHTGREY);
+            Okbut.setStyle("-fx-background-color: #40334a");
+            LabelPomodoro.setTextFill(Color.web("#d1cbd6"));
+            LabelTimer.setTextFill(Color.web("#d1cbd6"));
+            LabelRest.setTextFill(Color.web("#d1cbd6"));
+            NameLabel.setTextFill(Color.web("#d1cbd6"));
+        }
+        if(Output_to_the_screen.theme)
+        {
+            AllWindow.setStyle("-fx-background-color: #f1f0f7");
+            Okbut.setTextFill(Color.web("#27203b"));
+            Okbut.setStyle("-fx-background-color: #b3afc4");
+            LabelPomodoro.setTextFill(Color.web("#27203b"));
+            LabelTimer.setTextFill(Color.web("#27203b"));
+            LabelRest.setTextFill(Color.web("#27203b"));
+            NameLabel.setTextFill(Color.web("#27203b"));
+        }
+
 
 
         one_profile NewPersonProfile = new one_profile();
@@ -103,6 +127,14 @@ public class AddProfile {
         NewProfileStage.setScene(NewprofileScene);
         NewProfileStage.setTitle(title);
         NewProfileStage.showAndWait();
+
+
+
+
+
+
+
+
 
 //        Okbut.setOnAction(event -> {
 //

@@ -42,7 +42,13 @@ public class ReviewProfile {
         FlowPane root = new FlowPane(tableView, groupOfFuncts);
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-        //ObservableList<one_profile> list = Main.profiles_get_list();
+        for (one_profile G : Main.profiles_get_list())
+        {
+            ObservableList<one_profile> data = FXCollections.observableArrayList();
+
+
+        }
+
 
         Scene sceneReview = new Scene(root,470, 290);
         stageProf.setScene(sceneReview);
