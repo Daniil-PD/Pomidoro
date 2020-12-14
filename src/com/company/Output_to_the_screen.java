@@ -279,7 +279,7 @@ public class Output_to_the_screen {
         });
         thread.setDaemon(true);
         thread.start();
-        timeText.setX(190);
+        timeText.setX(160);
         timeText.setY(160);
         timeText.setFont(new Font(80));
         groupOfAll.getChildren().add(timeText);
@@ -371,6 +371,7 @@ public class Output_to_the_screen {
             @Override
             public void handle(ActionEvent actionEvent) {
                 groupOfFuncts.getChildren().clear();
+                SetAlarmTimeWindow.SetTime();
                 ChoiceF(4);
             }
         });

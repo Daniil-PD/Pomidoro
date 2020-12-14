@@ -1,5 +1,7 @@
 package com.company;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
@@ -7,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class SetAlarmTimeWindow {
@@ -39,8 +42,33 @@ public class SetAlarmTimeWindow {
 
         stage.setTitle("Выбор времени");
         Scene sceneHelp = new Scene(commonPane, 350, 200);
+        if(!Output_to_the_screen.theme)
+        {
+            commonPane.setStyle("-fx-background-color: #200f33");
+            ok.setTextFill(Color.LIGHTGREY);
+            ok.setStyle("-fx-background-color: #40334a");
+            textHrs.setTextFill(Color.web("#d1cbd6"));
+            TextMin.setTextFill(Color.web("#d1cbd6"));
 
-        ok.setOnAction(e->stage.close());
+        }
+        if(Output_to_the_screen.theme)
+        {
+            commonPane.setStyle("-fx-background-color: #f1f0f7");
+            ok.setTextFill(Color.web("#27203b"));
+            ok.setStyle("-fx-background-color: #b3afc4");
+            textHrs.setTextFill(Color.web("#27203b"));
+            TextMin.setTextFill(Color.web("#27203b"));
+
+        }
+
+
+        ok.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                stage.close ();
+                //
+            }
+        });
 
         //прописать привязку спиннеров к созданному профилю
 

@@ -44,7 +44,7 @@ public class HelpWindow {
         BorderPane.setAlignment(Ok, Pos.TOP_RIGHT);
         DropShadow tenn = new DropShadow();
         Ok.setEffect(tenn);
-        root.getChildren().addAll(ButtonOK);
+        root.getChildren().add(ButtonOK);
 
 
         Ok.setOnAction(event -> HelpWinStage.close());
