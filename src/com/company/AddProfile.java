@@ -91,7 +91,7 @@ public class AddProfile {
         Okbut.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                //X.setText(Namefield.getText());
+
                 MinuteTimer.valueProperty().addListener(new ChangeListener<Number>() {
                     public void changed(ObservableValue<?extends Number> observable, Number oldValue, Number newValue){
 

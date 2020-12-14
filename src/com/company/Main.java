@@ -72,6 +72,7 @@ public class Main extends Application {
     public static one_profile get_now_profile(){
         return now_profile_pomidoro;
     }
+    //public static boolean profiles_add_profile(){return profiles.add_new_profile();}
     public static boolean profiles_get_theme(){return profiles.get_theme();}
     public static void profiles_set_theme(boolean set){profiles.set_theme(set);}
 
