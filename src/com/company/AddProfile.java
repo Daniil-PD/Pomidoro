@@ -3,6 +3,10 @@
 * void AddProfileWindow (String title)      : Получение данных нового профиля от пользователя
  */
 package com.company;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
@@ -84,6 +88,18 @@ public class AddProfile {
         NewProfileStage.setScene(NewprofileScene);
         NewProfileStage.setTitle(title);
         NewProfileStage.showAndWait();
+        Okbut.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                //X.setText(Namefield.getText());
+                MinuteTimer.valueProperty().addListener(new ChangeListener<Number>() {
+                    public void changed(ObservableValue<?extends Number> observable, Number oldValue, Number newValue){
+
+                    }
+                });
+
+            }
+        });
 
 
 
