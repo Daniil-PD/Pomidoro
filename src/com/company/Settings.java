@@ -28,7 +28,7 @@ public class Settings {
     }
 
     public ArrayList<one_profile> ger_list(){
-        return
+        return profiles;
     }
 
     public boolean get_theme(){

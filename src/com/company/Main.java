@@ -77,7 +77,7 @@ public class Main extends Application {
     public static boolean profiles_add_profile(one_profile G){return profiles.add_new_profile(G);}
     public static boolean profiles_delite_index(int i){return profiles.delite_index(i);}
     public static int profiles_size(){return profiles.size();}
-    public static ArrayList<one_profile> profiles_get_list(){return profiles.}
+    public static ArrayList<one_profile> profiles_get_list(){return profiles.ger_list();}
     public static boolean profiles_get_theme(){return profiles.get_theme();}
     public static void profiles_set_theme(boolean set){profiles.set_theme(set);}
 
