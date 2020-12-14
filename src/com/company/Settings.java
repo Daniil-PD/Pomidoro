@@ -23,9 +23,12 @@ public class Settings {
     private ArrayList<one_profile> profiles = new ArrayList<>();
     private boolean theme = true;
 
-
     public Settings() {
         update_data();
+    }
+
+    public ArrayList<one_profile> ger_list(){
+        return
     }
 
     public boolean get_theme(){

@@ -4,6 +4,8 @@ package com.company;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class Main extends Application {
 
     static one_profile now_profile_pomidoro;
@@ -72,7 +74,10 @@ public class Main extends Application {
     public static one_profile get_now_profile(){
         return now_profile_pomidoro;
     }
-    //public static boolean profiles_add_profile(){return profiles.add_new_profile();}
+    public static boolean profiles_add_profile(one_profile G){return profiles.add_new_profile(G);}
+    public static boolean profiles_delite_index(int i){return profiles.delite_index(i);}
+    public static int profiles_size(){return profiles.size();}
+    public static ArrayList<one_profile> profiles_get_list(){return profiles.}
     public static boolean profiles_get_theme(){return profiles.get_theme();}
     public static void profiles_set_theme(boolean set){profiles.set_theme(set);}
 
