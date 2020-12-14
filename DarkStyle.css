@@ -1,0 +1,23 @@
+.root {
+
+    -fx-accent: #584866; // выделение при наведении мыши
+    -fx-focus-color: #584866;
+}
+.context-menu {
+  -fx-background-color: #4e3f5c;
+  -fx-text-fill: white;
+}
+.menu-bar .label {
+    -fx-text-fill: lightgrey;
+
+}
+
+.menu-item .label {
+  -fx-text-fill: white;
+}
+
+
+.menu-item:focused .label {
+
+  -fx-text-fill: #dacfe6;
+}

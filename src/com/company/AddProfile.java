@@ -1,5 +1,8 @@
+/*
+*Окно добавления профиля
+* void AddProfileWindow (String title)      : Получение данных нового профиля от пользователя
+ */
 package com.company;
-
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
@@ -15,12 +18,9 @@ public class AddProfile {
         Label NameLabel = new Label("Название профиля:");
         TextField NameField = new TextField();
         NameField.setMaxSize(100,5);
-        Label ThemeLabel = new Label("Тема по умолчанию:");
         ToggleGroup ThemeButtons = new ToggleGroup();
-        RadioButton LightTheme = new RadioButton("Светлая тема");
-        RadioButton DarkTheme = new RadioButton("Темная тема");
-        LightTheme.setToggleGroup(ThemeButtons);
-        DarkTheme.setToggleGroup(ThemeButtons);
+
+        Button Okbut = new Button("Ок");
 
 
         GridPane ProfileGrid = new GridPane();
@@ -29,13 +29,12 @@ public class AddProfile {
         ProfileGrid.setVgap(15);
         ProfileGrid.add(NameLabel,0,1);
         ProfileGrid.add(NameField,1,1);
-        ProfileGrid.add(ThemeLabel,0,2);
-        ProfileGrid.add(LightTheme,1,2);
-        ProfileGrid.add(DarkTheme,2,2);
+
+        ProfileGrid.add(Okbut,2, 1);
         ProfileGrid.setHalignment(NameLabel, HPos.RIGHT);
-        ProfileGrid.setHalignment(ThemeLabel, HPos.RIGHT);
 
 
+        Okbut.setOnAction(event->NewProfileStage.close());
 
 
 

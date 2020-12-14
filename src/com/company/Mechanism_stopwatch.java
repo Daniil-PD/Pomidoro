@@ -25,6 +25,11 @@ public class Mechanism_stopwatch
     boolean flag_pause;
     static long time_start;
     static long time_that_passed;
+    boolean isActive = true;
+
+    void disable(){
+        isActive=false;
+    }
 
     public Mechanism_stopwatch() // Ининциализация
     {

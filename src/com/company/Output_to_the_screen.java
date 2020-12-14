@@ -1,5 +1,12 @@
+/*
+ *Вывод на экран
+ *Методы:
+ * - void updat_timeText()                        : Переводит значения времени (из Main) в строку
+ * - void ChoiceF(int choice)                     : Осуществляет смену кнопок под основные функции
+ * - void start_output_to_the_screen(Stage stage) : Вывод основного GUI
+ */
 package com.company;
-
+import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -7,32 +14,72 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
+
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
+
 
 import java.io.File;
-
 public class Output_to_the_screen {
+
+    private static int Selected = 1;
+
     public static Group groupOfFuncts;
     private static void updat_timeText() {
-        timeText.setText(
-                Long.toString((Main.pomidoro_get_remaining_time() / (1000 * 60)) % 60) + ":" +
-                        Long.toString((Main.pomidoro_get_remaining_time() / 1000) % 60));
-        //Long.toString((Main.pomidoro_get_remaining_time()) % 1000));
+        switch (Selected) {
+            case 1:
+                timeText.setText(
+                        Long.toString((Main.pomidoro_get_remaining_time() / (1000 * 60)) % 60) + ":" +
+                                Long.toString((Main.pomidoro_get_remaining_time() / 1000) % 60));
+                break;
+            case 2:
+                timeText.setText(
+                        Long.toString((Main.timer_get_remaining_time()/ (1000 * 60)) % 60) + ":" +
+                                Long.toString((Main.timer_get_remaining_time() / 1000) % 60));
+
+                break;
+            case 3:
+                timeText.setText(
+                        Long.toString((Main.stopwatch_get_past_time() / (1000 * 60)) % 60) + ":" +
+                                Long.toString((Main.stopwatch_get_past_time() / 1000) % 60));
+
+                break;
+            case 4:
+                timeText.setText(
+                        Long.toString((Main.pomidoro_get_remaining_time() / (1000 * 60)) % 60) + ":" +
+                                Long.toString((Main.pomidoro_get_remaining_time() / 1000) % 60));
+
+                break;
+
+
+            //Long.toString((Main.pomidoro_get_remaining_time()) % 1000));
+        }
     }
 
     private static final Text timeText = new Text(Long.toString((Main.pomidoro_get_remaining_time() % 1000 * 60 * 60 * 24) / 1000 * 60 * 60) + ":" +
             Long.toString((Main.pomidoro_get_remaining_time() % 1000 * 60 * 60) / 1000 * 60) + ":" +
             Long.toString((Main.pomidoro_get_remaining_time() % 1000 * 60) / 1000));
+
+
 
     public static void ChoiceF(int choice) { //выбор пользователем одной из 4х функций (визуал)
         try {
@@ -44,6 +91,7 @@ public class Output_to_the_screen {
             StartBut.setStyle("-fx-background-color: transparent");
             StopBut.setStyle("-fx-background-color: transparent");
             PauseBut.setStyle("-fx-background-color: transparent");
+            Selected = choice;
 
              switch (choice) {
 
@@ -52,19 +100,25 @@ public class Output_to_the_screen {
                     StopBut.setOnAction(event -> Main.pomidor_stop_mechanism());
                     PauseBut.setOnAction(event -> Main.pomidor_pause_mechanism());
                     Button PlusFiveMinutes = new Button("+5 минут");
+                    PlusFiveMinutes.setOnAction(event -> Main.pomidor_plusTime_mechanism(5*60*1000));
+
                     timeButtFuncts.getChildren().addAll(StartBut, StopBut, PauseBut, PlusFiveMinutes);
                     timeButtFuncts.setSpacing(10);
                     timeButtFuncts.setLayoutX(190);
                     timeButtFuncts.setLayoutY(255);
                     groupOfFuncts.getChildren().add(timeButtFuncts);
                     PlusFiveMinutes.setStyle("-fx-background-color: transparent");
+                    break;
                 case 2:
-                    StartBut.setOnAction(event -> Main.pomidor_start_mechanism()); // Сюда и ниже прописать нужную функцию
-                    StopBut.setOnAction(event -> Main.pomidor_stop_mechanism());
-                    PauseBut.setOnAction(event -> Main.pomidor_pause_mechanism());
+                    StartBut.setOnAction(event -> Main.timer_start_mechanism()); // Сюда и ниже прописать нужную функцию
+                    StopBut.setOnAction(event -> Main.timer_stop_mechanism(60));
+                    PauseBut.setOnAction(event -> Main.timer_pause_mechanism());
                     Button Plus15sec = new Button("+15 сек.");
+                    Plus15sec.setOnAction(event -> Main.timer_plusTime_mechanism(-15000));
                     Button Plus60sec = new Button("+60 сек.");
+                    Plus60sec.setOnAction(event -> Main.timer_plusTime_mechanism(-60000));
                     Button Plus10min = new Button("+10 min.");
+                    Plus10min.setOnAction(event -> Main.timer_plusTime_mechanism(-10*60000));
                     timeButtFuncts.getChildren().addAll(StartBut, StopBut, PauseBut, Plus15sec, Plus60sec, Plus10min);
                     timeButtFuncts.setSpacing(5);
                     timeButtFuncts.setLayoutX(130);
@@ -73,15 +127,18 @@ public class Output_to_the_screen {
                     Plus15sec.setStyle("-fx-background-color: transparent");
                     Plus60sec.setStyle("-fx-background-color: transparent");
                     Plus10min.setStyle("-fx-background-color: transparent");
+                    break;
                 case 3:
-                    StartBut.setOnAction(event -> Main.pomidor_start_mechanism());
-                    StopBut.setOnAction(event -> Main.pomidor_stop_mechanism());
-                    PauseBut.setOnAction(event -> Main.pomidor_pause_mechanism());
+                    StartBut.setOnAction(event -> Main.stopwatch_start_mechanism());
+                    StopBut.setOnAction(event -> Main.stopwatch_stop_mechanism());
+                    PauseBut.setOnAction(event -> Main.stopwatch_pause_mechanism());
                     timeButtFuncts.getChildren().addAll(StartBut, StopBut, PauseBut);
                     timeButtFuncts.setSpacing(10);
                     timeButtFuncts.setLayoutX(220);
                     timeButtFuncts.setLayoutY(255);
+                    timeText.setLayoutX(30);
                     groupOfFuncts.getChildren().add(timeButtFuncts);
+                    break;
                 case 4:
 
                     StartBut.setOnAction(event -> Main.pomidor_start_mechanism());
@@ -91,6 +148,7 @@ public class Output_to_the_screen {
                     timeButtFuncts.setLayoutX(250);
                     timeButtFuncts.setLayoutY(255);
                     groupOfFuncts.getChildren().add(timeButtFuncts);
+                    break;
             }
         } catch (Exception e) {
 
@@ -98,9 +156,15 @@ public class Output_to_the_screen {
 
     }
     public static void start_output_to_the_screen(Stage stage) throws Exception {
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                                    public void handle(WindowEvent we) {
+                                        Main.full_stop();
+                                    }
+                                });
+
         groupOfFuncts = new Group();
         Group groupOfAll = new Group(groupOfFuncts);
-        Rectangle ClockZone = new Rectangle(330, 200, Color.GAINSBORO); //поле заднего фона часов
+        Rectangle ClockZone = new Rectangle(330, 200); //поле заднего фона часов
         ClockZone.setX(140);
         ClockZone.setY(40);
         ClockZone.setArcHeight(105);
@@ -116,8 +180,6 @@ public class Output_to_the_screen {
         menuHelp1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                String musicFile = "Another One Bites The Dust.mp3";     // For example
-
                 Media sound = new Media(new File("Another One Bites The Dust.mp3").toURI().toString());
                 MediaPlayer mediaPlayer = new MediaPlayer(sound);
                 mediaPlayer.play();
@@ -129,27 +191,26 @@ public class Output_to_the_screen {
         menuHelp.getItems().add(menuHelp1);
 
 
-        MenuItem DeleteProfile = new MenuItem("Удалить профиль"); // список меню профиля
-        /* ТУТ обрабатываем события кнопки DeleteProfile
-        DeleteProfile.setOnAction(new EventHandler<ActionEvent>() { // обратите внимание на методы setOn...
-            @Override
-            public void handle(ActionEvent actionEvent) {
-            }
-        });
-        */
         MenuItem AddProfile1 = new MenuItem("Добавить профиль");
         AddProfile1.setOnAction(event -> AddProfile.AddProfileWindow("Добавление профиля"));
-        MenuItem ChangeProfile = new MenuItem("Сменить текущий профиль");
-        menuProfile.getItems().addAll(AddProfile1, DeleteProfile, ChangeProfile); // группируем профиль
+        MenuItem ChangeProfile = new MenuItem("Удалить/Сменить текущий профиль");
+        ChangeProfile.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                ReviewProfile.RevProf("Сменить или удалить профиль");
+            }
+        });
+
+
+
+        menuProfile.getItems().addAll(AddProfile1, ChangeProfile); // группируем профиль
 
         RadioMenuItem Lightheme = new RadioMenuItem("Светлая тема"); // список меню настройки
         RadioMenuItem Darktheme = new RadioMenuItem("Темная тема");
-        RadioMenuItem autoTheme = new RadioMenuItem("Тема по умолчанию");
         ToggleGroup toggleGroup = new ToggleGroup(); // создаём группу выбора для тем (галочка д.б. только у 1-ой)
         Lightheme.setToggleGroup(toggleGroup); //
         Darktheme.setToggleGroup(toggleGroup);
-        autoTheme.setToggleGroup(toggleGroup);
-        menuSettings.getItems().addAll(Lightheme, Darktheme, autoTheme); // группируем настройки
+        menuSettings.getItems().addAll(Lightheme, Darktheme); // группируем настройки
         menuBar.getMenus().addAll(menuSettings, menuProfile, menuHelp); // группируем всё меню
         menuBar.setMinWidth(500);
         groupOfAll.getChildren().add(menuBar);
@@ -168,6 +229,52 @@ public class Output_to_the_screen {
         SecRecorder.setToggleGroup(setts);
         AlClock.setToggleGroup(setts);
         setts.selectToggle(Pomodoro);
+        DropShadow shadowInButtn = new DropShadow();
+        Pomodoro.setEffect(shadowInButtn);
+
+
+
+
+
+        Pomodoro.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                AlClock.setEffect(null);
+                SecRecorder.setEffect(null);
+                Timer.setEffect(null);
+                Pomodoro.setEffect(shadowInButtn);
+            }
+        });
+
+        Timer.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                AlClock.setEffect(null);
+                SecRecorder.setEffect(null);
+                Pomodoro.setEffect(null);
+                Timer.setEffect(shadowInButtn);
+            }
+        });
+        SecRecorder.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                AlClock.setEffect(null);
+                SecRecorder.setEffect(shadowInButtn);
+                Pomodoro.setEffect(null);
+                Timer.setEffect(null);
+            }
+        });
+        AlClock.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                AlClock.setEffect(shadowInButtn);
+                SecRecorder.setEffect(null);
+                Pomodoro.setEffect(null);
+                Timer.setEffect(null);
+            }
+        });
+
+
 
 
 
@@ -213,68 +320,78 @@ public class Output_to_the_screen {
         });
         thread.setDaemon(true);
         thread.start();
-        timeText.setX(160);
+        timeText.setX(190);
         timeText.setY(160);
         timeText.setFont(new Font(80));
         groupOfAll.getChildren().add(timeText);
 
-
-        /*AlClock.setStyle("-fx-background-color: WHITESMOKE");
-        Pomodoro.setStyle("-fx-background-color: WHITESMOKE");
-        SecRecorder.setStyle("-fx-background-color: WHITESMOKE");
-        Timer.setStyle("-fx-background-color: WHITESMOKE"); */
-
-
         Scene scene = new Scene(groupOfAll, 500, 300);
 
-        toggleGroup.selectToggle(autoTheme);
+
         stage.setResizable(false);
 
         stage.setTitle("Time cool app");//как назовём спектакль?)
         stage.setScene(scene); //The show must begin
         stage.getIcons().add(new Image("file:64.png"));
 
-        stage.show();//окрываем занавес
-        //ПОКА ТЕМЫ НЕ РАБОТАЮТ!
-       /*  Lightheme.setOnAction(new EventHandler<ActionEvent>() {
+        stage.show();
+         Lightheme.setOnAction(new EventHandler<ActionEvent>() {
            @Override
             public void handle(ActionEvent actionEvent) {
-                scene.setFill(Color.WHITE);
+               scene.getStylesheets().clear();
+               scene.setFill(Color.web("#f1f0f7"));
+               scene.getStylesheets().add("file:LightStyle.css");
+               shadowInButtn.setColor(Color.BLACK);
+               setts.selectToggle(Pomodoro);
 
-                StartBut.setTextFill(Color.BLACK);
-                StopBut.setTextFill(Color.BLACK);
-                PauseBut.setTextFill(Color.BLACK);
-                AlClock.setTextFill(Color.BLACK);
-                Pomodoro.setTextFill(Color.BLACK);
-                SecRecorder.setTextFill(Color.BLACK);
-                Timer.setTextFill(Color.BLACK);
-                ClockZone.setFill(Color.GAINSBORO);
+
+                AlClock.setTextFill(Color.web("#27203b"));
+                Pomodoro.setTextFill(Color.web("#27203b"));
+                SecRecorder.setTextFill(Color.web("#27203b"));
+                Timer.setTextFill(Color.web("#27203b"));
+
+               AlClock.setStyle("-fx-background-color: #c8cadb");
+               Pomodoro.setStyle("-fx-background-color: #c8cadb");
+               SecRecorder.setStyle("-fx-background-color: #c8cadb");
+               Timer.setStyle("-fx-background-color: #c8cadb");
+               timeText.setFill(Color.web("#27203b"));
+
+               ClockZone.setFill(Color.WHITE);
+               menuBar.setStyle("-fx-background-color: #e7e4f2");
 
             }
         });
         Darktheme.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                scene.setFill(Color.DIMGREY);
+                scene.getStylesheets().clear();
+                scene.getStylesheets().add("file:DarkStyle.css");
+                scene.setFill(Color.web("#200f33"));
+                shadowInButtn.setColor(Color.GRAY);
+                setts.selectToggle(Pomodoro);
 
-                StartBut.setTextFill(Color.MISTYROSE);
-                StopBut.setTextFill(Color.MISTYROSE);
-                PauseBut.setTextFill(Color.MISTYROSE);
                 AlClock.setTextFill(Color.LIGHTGREY);
                 Pomodoro.setTextFill(Color.LIGHTGREY);
                 SecRecorder.setTextFill(Color.LIGHTGREY);
                 Timer.setTextFill(Color.LIGHTGREY);
-                ClockZone.setFill(Color.GREY);
+                AlClock.setStyle("-fx-background-color: #40334a");
+                Pomodoro.setStyle("-fx-background-color: #40334a");
+                SecRecorder.setStyle("-fx-background-color: #40334a");
+                Timer.setStyle("-fx-background-color: #40334a");
+                ClockZone.setFill(Color.web ("#362c40"));
+                timeText.setFill(Color.web("#d1cbd6"));
+                menuBar.setStyle("-fx-background-color: #50405e");
 
 
             }
         });
-*/
+
         Pomodoro.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 groupOfFuncts.getChildren().clear();
                 ChoiceF(1);
+
             }
         });
 
@@ -303,3 +420,4 @@ public class Output_to_the_screen {
 
     }
 }
+
