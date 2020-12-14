@@ -85,7 +85,7 @@ public class AddProfile {
         restTimer.setLayoutY(200);
         Pane AllWindow = new Pane();
         AllWindow.getChildren().addAll(ProfileGrid,restTimer,MinuteTimer);
-        if(!Output_to_the_screen.theme)
+        if(!Main.profiles_get_theme())
         {
             AllWindow.setStyle("-fx-background-color: #200f33");
             Okbut.setTextFill(Color.LIGHTGREY);
@@ -95,7 +95,7 @@ public class AddProfile {
             LabelRest.setTextFill(Color.web("#d1cbd6"));
             NameLabel.setTextFill(Color.web("#d1cbd6"));
         }
-        if(Output_to_the_screen.theme)
+        if(Main.profiles_get_theme())
         {
             AllWindow.setStyle("-fx-background-color: #f1f0f7");
             Okbut.setTextFill(Color.web("#27203b"));

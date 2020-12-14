@@ -42,7 +42,7 @@ public class SetAlarmTimeWindow {
 
         stage.setTitle("Выбор времени");
         Scene sceneHelp = new Scene(commonPane, 350, 200);
-        if(!Output_to_the_screen.theme)
+        if(!Main.profiles_get_theme())
         {
             commonPane.setStyle("-fx-background-color: #200f33");
             ok.setTextFill(Color.LIGHTGREY);
@@ -51,7 +51,7 @@ public class SetAlarmTimeWindow {
             TextMin.setTextFill(Color.web("#d1cbd6"));
 
         }
-        if(Output_to_the_screen.theme)
+        if(Main.profiles_get_theme())
         {
             commonPane.setStyle("-fx-background-color: #f1f0f7");
             ok.setTextFill(Color.web("#27203b"));

@@ -51,7 +51,7 @@ public class HelpWindow {
         HelpWinStage.setTitle("Создать профиль");
         Scene sceneHelp = new Scene(root, 300, 200);
 
-        if(!Output_to_the_screen.theme)
+        if(!Main.profiles_get_theme())
         {
 
             root.setStyle("-fx-background-color: #200f33");
@@ -59,7 +59,7 @@ public class HelpWindow {
             Ok.setStyle("-fx-background-color: #40334a");
             AboutApp.setTextFill(Color.web("#d1cbd6"));
         }
-        if(Output_to_the_screen.theme)
+        if(Main.profiles_get_theme())
         {
             root.setStyle("-fx-background-color: #f1f0f7");
             Ok.setTextFill(Color.web("#27203b"));

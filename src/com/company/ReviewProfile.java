@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;;
 import javafx.scene.layout.FlowPane;
 
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -37,7 +38,6 @@ public class ReviewProfile {
         FlowPane groupOfFuncts = new FlowPane(search, changeProf, delProf);
 
 
-
         tableView.getColumns().addAll(nameColumn,minWorkTimer, minRestTimer);
         FlowPane root = new FlowPane(tableView, groupOfFuncts);
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
@@ -46,11 +46,22 @@ public class ReviewProfile {
         {
             ObservableList<one_profile> data = FXCollections.observableArrayList();
 
-
         }
 
-
         Scene sceneReview = new Scene(root,470, 290);
+
+
+        sceneReview.getStylesheets().add("file:DarkStyle.css");
+        root.setStyle("-fx-background-color: #200f33");
+        changeProf.setTextFill(Color.LIGHTGREY);
+        changeProf.setStyle("-fx-background-color: #40334a");
+        delProf.setTextFill(Color.LIGHTGREY);
+        delProf.setStyle("-fx-background-color: #40334a");
+        nameColumn.setStyle("#d1cbd6");//+-
+
+
+
+
         stageProf.setScene(sceneReview);
         stageProf.setTitle(title);
         stageProf.setResizable(false);

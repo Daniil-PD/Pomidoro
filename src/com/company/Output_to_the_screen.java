@@ -46,7 +46,7 @@ public class Output_to_the_screen {
 
     public static Group groupOfFuncts;
     public static ToggleGroup toggleGr;
-    public static Boolean theme = Main.profiles_get_theme();
+   // public static Boolean theme = Main.profiles_get_theme();
     private static void updat_timeText() {
         switch (Selected) {
             case 1:
@@ -239,7 +239,7 @@ public class Output_to_the_screen {
                 Timer.setEffect(null);
             }
         });
-        AlClock.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+        AlClock.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 AlClock.setEffect(shadowInButtn);
@@ -250,24 +250,50 @@ public class Output_to_the_screen {
         });
         Scene scene = new Scene(groupOfAll, 500, 300);
 
-        scene.getStylesheets().add("file:DarkStyle.css");
-        scene.setFill(Color.web("#200f33"));
-        shadowInButtn.setColor(Color.GRAY);
-        setts.selectToggle(Pomodoro);
+        if(!Main.profiles_get_theme()) {
+            scene.getStylesheets().add("file:DarkStyle.css");
+            scene.setFill(Color.web("#200f33"));
+            shadowInButtn.setColor(Color.GRAY);
+            setts.selectToggle(Pomodoro);
 
-        AlClock.setTextFill(Color.LIGHTGREY);
-        Pomodoro.setTextFill(Color.LIGHTGREY);
-        SecRecorder.setTextFill(Color.LIGHTGREY);
-        Timer.setTextFill(Color.LIGHTGREY);
-        AlClock.setStyle("-fx-background-color: #40334a");
-        Pomodoro.setStyle("-fx-background-color: #40334a");
-        SecRecorder.setStyle("-fx-background-color: #40334a");
-        Timer.setStyle("-fx-background-color: #40334a");
-        ClockZone.setFill(Color.web ("#362c40"));
-        timeText.setFill(Color.web("#d1cbd6"));
-        menuBar.setStyle("-fx-background-color: #50405e");
-        //theme=false;
-        theme = Main.profiles_get_theme();
+            AlClock.setTextFill(Color.LIGHTGREY);
+            Pomodoro.setTextFill(Color.LIGHTGREY);
+            SecRecorder.setTextFill(Color.LIGHTGREY);
+            Timer.setTextFill(Color.LIGHTGREY);
+            AlClock.setStyle("-fx-background-color: #40334a");
+            Pomodoro.setStyle("-fx-background-color: #40334a");
+            SecRecorder.setStyle("-fx-background-color: #40334a");
+            Timer.setStyle("-fx-background-color: #40334a");
+            ClockZone.setFill(Color.web("#362c40"));
+            timeText.setFill(Color.web("#d1cbd6"));
+            menuBar.setStyle("-fx-background-color: #50405e");
+        }
+        else {
+            scene.getStylesheets().clear();
+            scene.setFill(Color.web("#f1f0f7"));
+            scene.getStylesheets().add("file:LightStyle.css");
+            shadowInButtn.setColor(Color.BLACK);
+            setts.selectToggle(Pomodoro);
+
+
+            AlClock.setTextFill(Color.web("#27203b"));
+            Pomodoro.setTextFill(Color.web("#27203b"));
+            SecRecorder.setTextFill(Color.web("#27203b"));
+            Timer.setTextFill(Color.web("#27203b"));
+
+            AlClock.setStyle("-fx-background-color: #c8cadb");
+            Pomodoro.setStyle("-fx-background-color: #c8cadb");
+            SecRecorder.setStyle("-fx-background-color: #c8cadb");
+            Timer.setStyle("-fx-background-color: #c8cadb");
+            timeText.setFill(Color.web("#27203b"));
+
+            ClockZone.setFill(Color.WHITE);
+            menuBar.setStyle("-fx-background-color: #e7e4f2");
+
+        }
+
+
+        //Main.profiles_get_theme();
 
 
         Timer.setMaxWidth(100);
@@ -344,7 +370,6 @@ public class Output_to_the_screen {
 
                ClockZone.setFill(Color.WHITE);
                menuBar.setStyle("-fx-background-color: #e7e4f2");
-               theme = true;
                Main.profiles_set_theme(true);
 
             }
@@ -369,7 +394,6 @@ public class Output_to_the_screen {
                 ClockZone.setFill(Color.web ("#362c40"));
                 timeText.setFill(Color.web("#d1cbd6"));
                 menuBar.setStyle("-fx-background-color: #50405e");
-                theme=false;
                 Main.profiles_set_theme(false);
 
 
