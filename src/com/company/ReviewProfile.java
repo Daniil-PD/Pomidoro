@@ -2,14 +2,11 @@ package com.company;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.control.cell.PropertyValueFactory;;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
+
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -45,7 +42,7 @@ public class ReviewProfile {
         FlowPane root = new FlowPane(tableView, groupOfFuncts);
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-        //ObservableList<one_profile> list = getList();
+        //ObservableList<one_profile> list = Main.profiles_get_list();
 
         Scene sceneReview = new Scene(root,470, 290);
         stageProf.setScene(sceneReview);
