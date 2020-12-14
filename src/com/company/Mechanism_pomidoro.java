@@ -89,7 +89,7 @@ public class Mechanism_pomidoro extends Thread {
         {
             time_start += time;
         } else
-            time_that_passed += time; //???
+            time_that_passed -= time; //???
 
         return true;
     }
