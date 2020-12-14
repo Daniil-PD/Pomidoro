@@ -80,7 +80,7 @@ public class AddProfile {
         Group AllWindow = new Group();
         AllWindow.getChildren().addAll(ProfileGrid,restTimer,MinuteTimer);
 
-        //one_profile NewPersonProfile = new one_profile();
+        one_profile NewPersonProfile = new one_profile();
 
         NewProfileStage.setTitle("Создать профиль");
         Scene NewprofileScene = new Scene(AllWindow, 470, 290);
@@ -91,7 +91,12 @@ public class AddProfile {
         Okbut.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                NewPersonProfile.clear();
+                NewPersonProfile.work_timer = (int)MinuteTimer.getValue();
+                NewPersonProfile.rest_timer = (int)restTimer.getValue();
+                NewPersonProfile.name_profile = NameField.getText();
 
+                Main.profiles_add_profile(NewPersonProfile);
                 MinuteTimer.valueProperty().addListener(new ChangeListener<Number>() {
                     public void changed(ObservableValue<?extends Number> observable, Number oldValue, Number newValue){
 

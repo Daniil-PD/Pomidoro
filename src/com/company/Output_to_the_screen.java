@@ -101,6 +101,12 @@ public class Output_to_the_screen {
                                     Long.toString(min/ 10) + Long.toString(min% 10) + ":" +
                                     Long.toString(sek/ 10)+ Long.toString(sek % 10));
                 }
+
+
+
+
+
+
                 break;
             }
 
