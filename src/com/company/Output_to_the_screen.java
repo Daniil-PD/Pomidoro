@@ -67,20 +67,43 @@ public class Output_to_the_screen {
 
             case 2:
             {
-                long time  = Main.timer_get_remaining_time();
-                long mls = time % 1000;
-                time /= 1000;
+                long time  = Main.timer_get_remaining_time()/1000;
                 long sek = time % 60;
-                timeText.setText(Long.toString(time));
-
+                time /= 60;
+                long min = time % 60;
+                time /= 60;
+                timeText.setText(
+                        Long.toString(min/ 10) + Long.toString(min% 10) + ":" +
+                                Long.toString(sek/ 10) + Long.toString(sek% 10));
                 break;
             }
             case 3:
-                timeText.setText(
-                        Long.toString((Main.stopwatch_get_past_time() / (1000 * 60)) % 60) + ":" +
-                                Long.toString((Main.stopwatch_get_past_time() / 1000) % 60));
-
+            {
+                long time  = Main.stopwatch_get_past_time();
+                long mls = time %1000;
+                time /= 1000;
+                long sek = time % 60;
+                time /= 60;
+                long min = time % 60;
+                time /= 60;
+                long hour = time % 60;
+                if (hour == 0)
+                {
+                    timeText.setText(
+                            Long.toString(min/ 10) + Long.toString(min% 10) + ":" +
+                                    Long.toString(sek/ 10) + Long.toString(sek% 10) + ":" +
+                                    Long.toString(mls/ 100)+ Long.toString(mls / 10 % 10) + Long.toString(mls% 10));
+                }
+                else
+                {
+                    timeText.setText(
+                            Long.toString(hour/ 10) + Long.toString(hour% 10) + ":" +
+                                    Long.toString(min/ 10) + Long.toString(min% 10) + ":" +
+                                    Long.toString(sek/ 10)+ Long.toString(sek % 10));
+                }
                 break;
+            }
+
             case 4:
                 timeText.setText(
                         Long.toString((Main.pomidoro_get_remaining_time() / (1000 * 3600)) % 60) + ":" +
