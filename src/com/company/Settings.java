@@ -108,8 +108,9 @@ public class Settings {
         full_rewrite_data();
         return flag_to_qveri;
     }
+
     boolean full_rewrite_data() {
-        update_data();
+        //update_data();
 
         try (FileWriter writer = new FileWriter(path_to_profile + "profiles.txt", false)) //открываем файл для записи
         {
@@ -176,12 +177,9 @@ public class Settings {
                 if (!line.isEmpty()){
                     words = line.split(" ");
                     if (words.length >= 2) {
-                        if (words[0] == "theme:"){
-                            if (words[1] == "true"){
-                                theme = true;
-                            }else{
-                                theme = false;
-                            }
+                        if (words[0].equals("theme:")){
+                            theme = words[1].equals("true");
+
                         }
                     }
                 }

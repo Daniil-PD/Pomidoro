@@ -52,6 +52,11 @@ public class Main extends Application {
 
         profiles.full_rewrite_data();
 
+        if (debag_mode) System.out.println("Загрузка настроек:");
+        if (debag_mode) if (profiles.get_theme()) System.out.println("Тема приложения: Светлая");  else System.out.println("Тема приложения: Тёмная");
+
+
+
 
         Application.launch(args); // запуск графики
 

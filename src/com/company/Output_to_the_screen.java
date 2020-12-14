@@ -46,7 +46,7 @@ public class Output_to_the_screen {
 
     public static Group groupOfFuncts;
     public static ToggleGroup toggleGr;
-    public static Boolean theme;
+    public static Boolean theme = Main.profiles_get_theme();
     private static void updat_timeText() {
         switch (Selected) {
             case 1:
@@ -266,7 +266,8 @@ public class Output_to_the_screen {
         ClockZone.setFill(Color.web ("#362c40"));
         timeText.setFill(Color.web("#d1cbd6"));
         menuBar.setStyle("-fx-background-color: #50405e");
-        theme=false;
+        //theme=false;
+        theme = Main.profiles_get_theme();
 
 
         Timer.setMaxWidth(100);
@@ -344,6 +345,7 @@ public class Output_to_the_screen {
                ClockZone.setFill(Color.WHITE);
                menuBar.setStyle("-fx-background-color: #e7e4f2");
                theme = true;
+               Main.profiles_set_theme(true);
 
             }
         });
@@ -368,6 +370,8 @@ public class Output_to_the_screen {
                 timeText.setFill(Color.web("#d1cbd6"));
                 menuBar.setStyle("-fx-background-color: #50405e");
                 theme=false;
+                Main.profiles_set_theme(false);
+
 
             }
         });
