@@ -5,6 +5,7 @@
  * - void ChoiceF(int choice)                     : Осуществляет смену кнопок под основные функции
  * - void start_output_to_the_screen(Stage stage) : Вывод основного GUI
  */
+//  в мейне появились методы текущего профиля. Привязать к темам всех окон. Привязать окно установки времени профиля
 package com.company;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -44,6 +45,8 @@ public class Output_to_the_screen {
     private static int Selected = 1;
 
     public static Group groupOfFuncts;
+    public static ToggleGroup toggleGr;
+    public static Boolean theme;
     private static void updat_timeText() {
         switch (Selected) {
             case 1:
@@ -80,81 +83,6 @@ public class Output_to_the_screen {
             Long.toString((Main.pomidoro_get_remaining_time() % 1000 * 60) / 1000));
 
 
-
-    public static void ChoiceF(int choice) { //выбор пользователем одной из 4х функций (визуал)
-        try {
-
-            HBox timeButtFuncts = new HBox();
-            Button StartBut = new Button("Старт");
-            Button StopBut = new Button("Стоп");
-            Button PauseBut = new Button("Пауза");
-            StartBut.setStyle("-fx-background-color: transparent");
-            StopBut.setStyle("-fx-background-color: transparent");
-            PauseBut.setStyle("-fx-background-color: transparent");
-            Selected = choice;
-
-             switch (choice) {
-
-                case 1:
-                    StartBut.setOnAction(event -> Main.pomidor_start_mechanism());
-                    StopBut.setOnAction(event -> Main.pomidor_stop_mechanism());
-                    PauseBut.setOnAction(event -> Main.pomidor_pause_mechanism());
-                    Button PlusFiveMinutes = new Button("+5 минут");
-                    PlusFiveMinutes.setOnAction(event -> Main.pomidor_plusTime_mechanism(5*60*1000));
-
-                    timeButtFuncts.getChildren().addAll(StartBut, StopBut, PauseBut, PlusFiveMinutes);
-                    timeButtFuncts.setSpacing(10);
-                    timeButtFuncts.setLayoutX(190);
-                    timeButtFuncts.setLayoutY(255);
-                    groupOfFuncts.getChildren().add(timeButtFuncts);
-                    PlusFiveMinutes.setStyle("-fx-background-color: transparent");
-                    break;
-                case 2:
-                    StartBut.setOnAction(event -> Main.timer_start_mechanism()); // Сюда и ниже прописать нужную функцию
-                    StopBut.setOnAction(event -> Main.timer_stop_mechanism(60));
-                    PauseBut.setOnAction(event -> Main.timer_pause_mechanism());
-                    Button Plus15sec = new Button("+15 сек.");
-                    Plus15sec.setOnAction(event -> Main.timer_plusTime_mechanism(-15000));
-                    Button Plus60sec = new Button("+60 сек.");
-                    Plus60sec.setOnAction(event -> Main.timer_plusTime_mechanism(-60000));
-                    Button Plus10min = new Button("+10 min.");
-                    Plus10min.setOnAction(event -> Main.timer_plusTime_mechanism(-10*60000));
-                    timeButtFuncts.getChildren().addAll(StartBut, StopBut, PauseBut, Plus15sec, Plus60sec, Plus10min);
-                    timeButtFuncts.setSpacing(5);
-                    timeButtFuncts.setLayoutX(130);
-                    timeButtFuncts.setLayoutY(255);
-                    groupOfFuncts.getChildren().add(timeButtFuncts);
-                    Plus15sec.setStyle("-fx-background-color: transparent");
-                    Plus60sec.setStyle("-fx-background-color: transparent");
-                    Plus10min.setStyle("-fx-background-color: transparent");
-                    break;
-                case 3:
-                    StartBut.setOnAction(event -> Main.stopwatch_start_mechanism());
-                    StopBut.setOnAction(event -> Main.stopwatch_stop_mechanism());
-                    PauseBut.setOnAction(event -> Main.stopwatch_pause_mechanism());
-                    timeButtFuncts.getChildren().addAll(StartBut, StopBut, PauseBut);
-                    timeButtFuncts.setSpacing(10);
-                    timeButtFuncts.setLayoutX(220);
-                    timeButtFuncts.setLayoutY(255);
-                    timeText.setLayoutX(30);
-                    groupOfFuncts.getChildren().add(timeButtFuncts);
-                    break;
-                case 4:
-
-                    StartBut.setOnAction(event -> Main.pomidor_start_mechanism());
-                    StopBut.setOnAction(event -> Main.pomidor_stop_mechanism());
-                    timeButtFuncts.getChildren().addAll(StartBut, StopBut);
-                    timeButtFuncts.setSpacing(10);
-                    timeButtFuncts.setLayoutX(250);
-                    timeButtFuncts.setLayoutY(255);
-                    groupOfFuncts.getChildren().add(timeButtFuncts);
-                    break;
-            }
-        } catch (Exception e) {
-
-        }
-
-    }
     public static void start_output_to_the_screen(Stage stage) throws Exception {
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
                                     public void handle(WindowEvent we) {
@@ -207,9 +135,10 @@ public class Output_to_the_screen {
 
         RadioMenuItem Lightheme = new RadioMenuItem("Светлая тема"); // список меню настройки
         RadioMenuItem Darktheme = new RadioMenuItem("Темная тема");
-        ToggleGroup toggleGroup = new ToggleGroup(); // создаём группу выбора для тем (галочка д.б. только у 1-ой)
-        Lightheme.setToggleGroup(toggleGroup); //
-        Darktheme.setToggleGroup(toggleGroup);
+        toggleGr = new ToggleGroup(); // создаём группу выбора для тем (галочка д.б. только у 1-ой)
+        Lightheme.setToggleGroup(toggleGr);
+        Darktheme.setToggleGroup(toggleGr);
+        toggleGr.selectToggle(Darktheme);
         menuSettings.getItems().addAll(Lightheme, Darktheme); // группируем настройки
         menuBar.getMenus().addAll(menuSettings, menuProfile, menuHelp); // группируем всё меню
         menuBar.setMinWidth(500);
@@ -243,6 +172,7 @@ public class Output_to_the_screen {
                 SecRecorder.setEffect(null);
                 Timer.setEffect(null);
                 Pomodoro.setEffect(shadowInButtn);
+
             }
         });
 
@@ -273,12 +203,25 @@ public class Output_to_the_screen {
                 Timer.setEffect(null);
             }
         });
+        Scene scene = new Scene(groupOfAll, 500, 300);
 
+        scene.getStylesheets().add("file:DarkStyle.css");
+        scene.setFill(Color.web("#200f33"));
+        shadowInButtn.setColor(Color.GRAY);
+        setts.selectToggle(Pomodoro);
 
-
-
-
-
+        AlClock.setTextFill(Color.LIGHTGREY);
+        Pomodoro.setTextFill(Color.LIGHTGREY);
+        SecRecorder.setTextFill(Color.LIGHTGREY);
+        Timer.setTextFill(Color.LIGHTGREY);
+        AlClock.setStyle("-fx-background-color: #40334a");
+        Pomodoro.setStyle("-fx-background-color: #40334a");
+        SecRecorder.setStyle("-fx-background-color: #40334a");
+        Timer.setStyle("-fx-background-color: #40334a");
+        ClockZone.setFill(Color.web ("#362c40"));
+        timeText.setFill(Color.web("#d1cbd6"));
+        menuBar.setStyle("-fx-background-color: #50405e");
+        theme=false;
 
 
         Timer.setMaxWidth(100);
@@ -325,9 +268,6 @@ public class Output_to_the_screen {
         timeText.setFont(new Font(80));
         groupOfAll.getChildren().add(timeText);
 
-        Scene scene = new Scene(groupOfAll, 500, 300);
-
-
         stage.setResizable(false);
 
         stage.setTitle("Time cool app");//как назовём спектакль?)
@@ -358,6 +298,7 @@ public class Output_to_the_screen {
 
                ClockZone.setFill(Color.WHITE);
                menuBar.setStyle("-fx-background-color: #e7e4f2");
+               theme = true;
 
             }
         });
@@ -381,7 +322,7 @@ public class Output_to_the_screen {
                 ClockZone.setFill(Color.web ("#362c40"));
                 timeText.setFill(Color.web("#d1cbd6"));
                 menuBar.setStyle("-fx-background-color: #50405e");
-
+                theme=false;
 
             }
         });
@@ -417,6 +358,98 @@ public class Output_to_the_screen {
                 ChoiceF(4);
             }
         });
+
+    }
+    public static void ChoiceF(int choice) { //выбор пользователем одной из 4х функций (визуал)
+        try {
+
+            HBox timeButtFuncts = new HBox();
+            Button StartBut = new Button("Старт");
+            Button StopBut = new Button("Стоп");
+            Button PauseBut = new Button("Пауза");
+            StartBut.setStyle("-fx-background-color: transparent");
+            StopBut.setStyle("-fx-background-color: transparent");
+            PauseBut.setStyle("-fx-background-color: transparent");
+            Selected = choice;
+
+            switch (choice) {
+
+                case 1:
+                    StartBut.setOnAction(event -> Main.pomidor_start_mechanism());
+                    StopBut.setOnAction(event -> Main.pomidor_stop_mechanism());
+                    PauseBut.setOnAction(event -> Main.pomidor_pause_mechanism());
+                    Button PlusFiveMinutes = new Button("+5 минут");
+                    PlusFiveMinutes.setOnAction(event -> Main.pomidor_plusTime_mechanism(5*60*1000));
+                    StartBut.setTextFill(Color.INDIANRED);
+                    StopBut.setTextFill(Color.INDIANRED);
+                    PauseBut.setTextFill(Color.INDIANRED);
+                    PlusFiveMinutes.setTextFill(Color.INDIANRED);
+
+                    timeButtFuncts.getChildren().addAll(StartBut, StopBut, PauseBut, PlusFiveMinutes);
+                    timeButtFuncts.setSpacing(10);
+                    timeButtFuncts.setLayoutX(190);
+                    timeButtFuncts.setLayoutY(255);
+                    groupOfFuncts.getChildren().add(timeButtFuncts);
+                    PlusFiveMinutes.setStyle("-fx-background-color: transparent");
+
+                    break;
+                case 2:
+                    StartBut.setOnAction(event -> Main.timer_start_mechanism()); // Сюда и ниже прописать нужную функцию
+                    StopBut.setOnAction(event -> Main.timer_stop_mechanism(60));
+                    PauseBut.setOnAction(event -> Main.timer_pause_mechanism());
+                    Button Plus15sec = new Button("+15 сек.");
+                    Plus15sec.setOnAction(event -> Main.timer_plusTime_mechanism(-15000));
+                    Button Plus60sec = new Button("+60 сек.");
+                    Plus60sec.setOnAction(event -> Main.timer_plusTime_mechanism(-60000));
+                    Button Plus10min = new Button("+10 min.");
+                    Plus10min.setOnAction(event -> Main.timer_plusTime_mechanism(-10*60000));
+                    timeButtFuncts.getChildren().addAll(StartBut, StopBut, PauseBut, Plus15sec, Plus60sec, Plus10min);
+                    timeButtFuncts.setSpacing(5);
+                    timeButtFuncts.setLayoutX(130);
+                    timeButtFuncts.setLayoutY(255);
+                    groupOfFuncts.getChildren().add(timeButtFuncts);
+                    Plus15sec.setStyle("-fx-background-color: transparent");
+                    Plus60sec.setStyle("-fx-background-color: transparent");
+                    Plus10min.setStyle("-fx-background-color: transparent");
+                    StartBut.setTextFill(Color.INDIANRED);
+                    StopBut.setTextFill(Color.INDIANRED);
+                    PauseBut.setTextFill(Color.INDIANRED);
+                    Plus15sec.setTextFill(Color.INDIANRED);
+                    Plus60sec.setTextFill(Color.INDIANRED);
+                    Plus10min.setTextFill(Color.INDIANRED);
+
+                    break;
+                case 3:
+                    StartBut.setOnAction(event -> Main.stopwatch_start_mechanism());
+                    StopBut.setOnAction(event -> Main.stopwatch_stop_mechanism());
+                    PauseBut.setOnAction(event -> Main.stopwatch_pause_mechanism());
+                    timeButtFuncts.getChildren().addAll(StartBut, StopBut, PauseBut);
+                    timeButtFuncts.setSpacing(10);
+                    timeButtFuncts.setLayoutX(220);
+                    timeButtFuncts.setLayoutY(255);
+                    timeText.setLayoutX(30);
+                    groupOfFuncts.getChildren().add(timeButtFuncts);
+                    StartBut.setTextFill(Color.INDIANRED);
+                    StopBut.setTextFill(Color.INDIANRED);
+                    PauseBut.setTextFill(Color.INDIANRED);
+                    break;
+                case 4:
+
+                    StartBut.setOnAction(event -> Main.pomidor_start_mechanism());
+                    StopBut.setOnAction(event -> Main.pomidor_stop_mechanism());
+                    timeButtFuncts.getChildren().addAll(StartBut, StopBut);
+                    timeButtFuncts.setSpacing(10);
+                    timeButtFuncts.setLayoutX(250);
+                    timeButtFuncts.setLayoutY(255);
+                    groupOfFuncts.getChildren().add(timeButtFuncts);
+                    StartBut.setTextFill(Color.INDIANRED);
+                    StopBut.setTextFill(Color.INDIANRED);
+
+                    break;
+            }
+        } catch (Exception e) {
+
+        }
 
     }
 }
