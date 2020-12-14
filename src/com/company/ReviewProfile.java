@@ -52,5 +52,6 @@ public class ReviewProfile {
         stageProf.setTitle(title);
         stageProf.setResizable(false);
         stageProf.showAndWait();
+
     }
 }
