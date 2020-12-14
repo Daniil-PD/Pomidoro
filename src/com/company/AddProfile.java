@@ -38,10 +38,7 @@ public class AddProfile {
         ProfileGrid.setHalignment(NameLabel, HPos.RIGHT);
 
 
-        Okbut.setOnAction(event->{
-            NewProfileStage.close();
 
-        });
 
 
 
@@ -51,6 +48,8 @@ public class AddProfile {
         Label LabelRest = new Label("Минуты таймера отдыха:");
         Slider MinuteTimer = new Slider(0,90,45);
 
+
+
         MinuteTimer.setShowTickLabels(true);
         MinuteTimer.setShowTickMarks(true);
         MinuteTimer.setBlockIncrement(17);//перемещение ползунка от 5 до 90
@@ -58,6 +57,7 @@ public class AddProfile {
         MinuteTimer.setMinorTickCount(1); //
         MinuteTimer.setSnapToTicks(true);//перемещение ползунка строго по целым значениям
         MinuteTimer.setMinSize(250, 50);
+
 
 
         ProfileGrid.add(LabelTimer,0,5);
@@ -83,7 +83,19 @@ public class AddProfile {
         Group AllWindow = new Group();
         AllWindow.getChildren().addAll(ProfileGrid,restTimer,MinuteTimer);
 
+
         one_profile NewPersonProfile = new one_profile();
+
+        Okbut.setOnAction(event->{
+            NewProfileStage.close();
+            NewPersonProfile.clear();
+            NewPersonProfile.work_timer = (int)MinuteTimer.getValue();
+            NewPersonProfile.rest_timer = (int)restTimer.getValue();
+            NewPersonProfile.name_profile = NameField.getText();
+            Main.profiles_add_profile(NewPersonProfile);
+
+
+        });
 
         NewProfileStage.setTitle("Создать профиль");
         Scene NewprofileScene = new Scene(AllWindow, 470, 290);
@@ -91,24 +103,19 @@ public class AddProfile {
         NewProfileStage.setScene(NewprofileScene);
         NewProfileStage.setTitle(title);
         NewProfileStage.showAndWait();
-        Okbut.setOnAction(new EventHandler<ActionEvent>() {
 
-
-            @Override
-            public void handle(ActionEvent event) {
-                NewPersonProfile.clear();
-                NewPersonProfile.work_timer = (int)MinuteTimer.getValue();
-                NewPersonProfile.rest_timer = (int)restTimer.getValue();
-                NewPersonProfile.name_profile = NameField.getText();
-                Main.profiles_add_profile(NewPersonProfile);
-                MinuteTimer.valueProperty().addListener(new ChangeListener<Number>() {
-                    public void changed(ObservableValue<?extends Number> observable, Number oldValue, Number newValue){
-
-                    }
-                });
-
-            }
-        });
+//        Okbut.setOnAction(event -> {
+//
+//
+//            NewPersonProfile.clear();
+//            NewPersonProfile.work_timer = (int)MinuteTimer.getValue();
+//            NewPersonProfile.rest_timer = (int)restTimer.getValue();
+//            NewPersonProfile.name_profile = NameField.getText();
+//            Main.profiles_add_profile(NewPersonProfile);
+//
+//
+//
+//        });
 
 
 
