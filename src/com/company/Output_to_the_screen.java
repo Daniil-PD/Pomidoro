@@ -50,16 +50,27 @@ public class Output_to_the_screen {
     private static void updat_timeText() {
         switch (Selected) {
             case 1:
+            {
+                long time  = Main.pomidoro_get_remaining_time()/1000;
+                long sek = time % 60;
+                time /= 60;
+                long min = time % 60;
                 timeText.setText(
-                        Long.toString((Main.pomidoro_get_remaining_time() / (1000 * 60)) % 60) + ":" +
-                                Long.toString((Main.pomidoro_get_remaining_time() / 1000) % 60));
+                        Long.toString(min/ 10) + Long.toString(min% 10) + ":" +
+                                Long.toString(sek/ 10) + Long.toString(sek% 10));
                 break;
+            }
+
             case 2:
-                timeText.setText(
-                        Long.toString((Main.timer_get_remaining_time()/ (1000 * 60)) % 60) + ":" +
-                                Long.toString((Main.timer_get_remaining_time() / 1000) % 60));
+            {
+                long time  = Main.timer_get_remaining_time();
+                long mls = time % 1000;
+                time /= 1000;
+                long sek = time % 60;
+                timeText.setText(Long.toString(time));
 
                 break;
+            }
             case 3:
                 timeText.setText(
                         Long.toString((Main.stopwatch_get_past_time() / (1000 * 60)) % 60) + ":" +
