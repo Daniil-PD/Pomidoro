@@ -17,26 +17,22 @@ public class ReviewProfile {
     private final ObservableList<one_profile> tvObservableList = FXCollections.observableArrayList();
     public  static void RevProf (String title)
     {
-       /* Stage stageProf = new Stage();
-        stageProf.initModality(Modality.APPLICATION_MODAL); // блокировка просмотра основного окна
+        Stage stageProf = new Stage();
+        stageProf.initModality(Modality.APPLICATION_MODAL);
+
 
         TableView<one_profile> tableView = new TableView<one_profile>();
-        tableView.setPrefSize(450,250);
+        tableView.setPrefSize(460,250);
+        tableView.setLayoutX(4);
         tableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
-        TableColumn<one_profile, String> nameColumn = new TableColumn<one_profile, String>("Название профиля");
-        //  nameColumn.setCellValueFactory(new PropertyValueFactory<one_profile, String>("name_profile"));//проинициализировать ИМЯ
+        TableColumn<one_profile, String> nameColumn = new TableColumn<one_profile, String>("Название");
+        TableColumn<one_profile, Integer> minWorkTimer = new TableColumn<one_profile, Integer>("Мин. основного таймера");
+        TableColumn<one_profile, Integer> minRestTimer = new TableColumn<one_profile, Integer>("Мин. таймера отдыха");
 
-        TableColumn<one_profile, Boolean> themeNow = new TableColumn<one_profile, Boolean>("Тема по умолчанию");
-
-        TableColumn<one_profile, Integer> PomidColumn = new TableColumn<one_profile, Integer>("Настройки помодоро");
-
-        TableColumn<one_profile, Integer> minWorkTimer = new TableColumn<one_profile, Integer>("Минуты основного таймера");
-
-        TableColumn<one_profile, Integer> minRestTimer = new TableColumn<one_profile, Integer>("Минуты таймера отдыха");
-        PomidColumn.getColumns().addAll(minWorkTimer,minRestTimer);
-
-
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name_profile"));//проинициализировать ИМЯ
+        minWorkTimer.setCellValueFactory(new PropertyValueFactory<>("work_timer"));
+        minRestTimer.setCellValueFactory(new PropertyValueFactory<>("rest_timer"));
 
         Button changeProf = new Button("Сменить профиль");
         Button delProf = new Button("Удалить профиль");
@@ -45,14 +41,17 @@ public class ReviewProfile {
 
 
 
-        tableView.getColumns().add(nameColumn);
+        tableView.getColumns().addAll(nameColumn,minWorkTimer, minRestTimer);
         FlowPane root = new FlowPane(tableView, groupOfFuncts);
+        tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
+        //ObservableList<one_profile> list = getList();
 
         Scene sceneReview = new Scene(root,470, 290);
         stageProf.setScene(sceneReview);
         stageProf.setTitle(title);
         stageProf.setResizable(false);
-        stageProf.showAndWait();*/
+        stageProf.showAndWait();
+
     }
 }

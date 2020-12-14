@@ -72,12 +72,13 @@ public class Main extends Application {
     public static one_profile get_now_profile(){
         return now_profile_pomidoro;
     }
+    //public static boolean profiles_add_profile(){return profiles.add_new_profile();}
     public static boolean profiles_get_theme(){return profiles.get_theme();}
     public static void profiles_set_theme(boolean set){profiles.set_theme(set);}
 
     public static long pomidoro_get_remaining_time(){return Mpomidoro.get_remaining_time();}
     public static void pomidor_finish(){windowTest.windw("pomidor finish");}
-    public static void timer_finish(){windowTest.windw("timer finish");}
+    public static void timer_finish(){windowTest.windw("timer finish");} // не забыть исправить до конца
     public static void alarmclock_finish(){windowTest.windw("alarmclock finish");}
 
     public static void pomidor_stop_mechanism(){Mpomidoro.stop_mechanism(1000*60*40,1000*60*10);}

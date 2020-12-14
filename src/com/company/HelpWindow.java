@@ -51,18 +51,22 @@ public class HelpWindow {
         HelpWinStage.setTitle("Создать профиль");
         Scene sceneHelp = new Scene(root, 300, 200);
 
-        /* Темная тема
-        root.setStyle("-fx-background-color: #200f33");
-        Ok.setTextFill(Color.LIGHTGREY);
-        Ok.setStyle("-fx-background-color: #40334a");
-        AboutApp.setTextFill(Color.web("#d1cbd6"));
-         */
-        /* светлая тема
-        root.setStyle("-fx-background-color: #f1f0f7");
-        Ok.setTextFill(Color.web("#27203b"));
-        Ok.setStyle("-fx-background-color: #b3afc4");
-        AboutApp.setTextFill(Color.web("#27203b"));
-         */
+        if(!Output_to_the_screen.theme)
+        {
+
+            root.setStyle("-fx-background-color: #200f33");
+            Ok.setTextFill(Color.LIGHTGREY);
+            Ok.setStyle("-fx-background-color: #40334a");
+            AboutApp.setTextFill(Color.web("#d1cbd6"));
+        }
+        if(Output_to_the_screen.theme)
+        {
+            root.setStyle("-fx-background-color: #f1f0f7");
+            Ok.setTextFill(Color.web("#27203b"));
+            Ok.setStyle("-fx-background-color: #b3afc4");
+            AboutApp.setTextFill(Color.web("#27203b"));
+        }
+
 
 
         HelpWinStage.setScene(sceneHelp);
