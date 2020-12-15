@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -69,6 +70,7 @@ public class HelpWindow {
 
 
 
+        HelpWinStage.getIcons().add(new Image("file:fre.png"));
         HelpWinStage.setScene(sceneHelp);
         HelpWinStage.setTitle(title);
         HelpWinStage.setResizable(false);

@@ -87,9 +87,9 @@ public class Main extends Application {
     public static void profiles_set_theme(boolean set){profiles.set_theme(set);}
 
     public static long pomidoro_get_remaining_time(){return Mpomidoro.get_remaining_time();}
-    public static void pomidor_finish(){windowTest.windw("Время! Помодоро");}
-    public static void timer_finish(){windowTest.windw("Время! Таймер");} // не забыть исправить до конца
-    public static void alarmclock_finish(){windowTest.windw("Время! Будильник");}
+    public static void pomidor_finish(){ windowTest.ringMess();windowTest.windw("Время завершилось!","Помодоро: Время");}
+    public static void timer_finish(){windowTest.ringMess();windowTest.windw("Время завершилось!","Таймер: Время");} // не забыть исправить до конца
+    public static void alarmclock_finish(){windowTest.ringMess();windowTest.windw("Время завершилось!","Будильник: Время");}
 
     public static void pomidor_stop_mechanism(){Mpomidoro.stop_mechanism(1000*60*40,1000*60*10);}
     public static void pomidor_pause_mechanism(){Mpomidoro.pause_mechanism();}

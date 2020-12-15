@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;;
+import javafx.scene.image.Image;
 import javafx.scene.layout.FlowPane;
 
 import javafx.scene.paint.Color;
@@ -59,6 +60,7 @@ public class ReviewProfile {
         nameColumn.setStyle("#d1cbd6");//+-
 
 
+        stageProf.getIcons().add(new Image("file:polzovatel.png"));
         stageProf.setScene(sceneReview);
         stageProf.setTitle(title);
         stageProf.setResizable(false);
