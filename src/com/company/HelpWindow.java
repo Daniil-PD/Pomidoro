@@ -24,33 +24,38 @@ public class HelpWindow {
 
         Pane root = new Pane();
         BorderPane ButtonOK = new BorderPane();
-        ButtonOK.setMinSize(300,200);
+        ButtonOK.setMinSize(360,250);
         ButtonOK.setPadding(new Insets(10,10,10,10));
 
+        DropShadow tenn = new DropShadow();
+        Label AboutApp = new Label("Приложение представляет собой таймер, будильник,  секундомер и помодоро. Помодоро - это техника управления временем, предполагающая фиксированное разбиение "
+                + " времени на выполнение задач и на перерыв между их выполнением.");
+        AboutApp.setMaxWidth(320);
+        AboutApp.setWrapText(true);
+        Label Who = new Label("Выполнили:\nСтуденты ИАИТ 2-го курса 3-4 группы: Петренко Д., Панарин В., Глыбина Е., Старостин Р.");
+        Who.setMaxWidth(320);
+        Who.setWrapText(true);
 
-        Label AboutApp = new Label("Приложение представляет собой таймер,\nбудильник,  секундомер и помодоро. " +
-                "\nПомодоро - это техника управления \nвременем, предполагающая фиксированное \nразбиение " +
-                " времени на выполнение задач \nи на перерыв между их выполнением.");
-        //AboutApp.setWrapText(true); -выравнивание текста не работает!
-        //AboutApp.setTextAlignment(TextAlignment.JUSTIFY);
+
+
 
 
 
         ButtonOK.setTop(AboutApp);
         BorderPane.setAlignment(AboutApp,Pos.CENTER);
+        ButtonOK.setCenter(Who);
 
         Button Ok = new Button("Oк");
         Ok.setPadding(new Insets(5, 5, 5, 5));
         ButtonOK.setBottom(Ok);
         BorderPane.setAlignment(Ok, Pos.TOP_RIGHT);
-        DropShadow tenn = new DropShadow();
         Ok.setEffect(tenn);
         root.getChildren().add(ButtonOK);
 
 
         Ok.setOnAction(event -> HelpWinStage.close());
         HelpWinStage.setTitle("Создать профиль");
-        Scene sceneHelp = new Scene(root, 300, 200);
+        Scene sceneHelp = new Scene(root, 360, 250);
 
         if(!Main.profiles_get_theme())
         {
@@ -59,6 +64,7 @@ public class HelpWindow {
             Ok.setTextFill(Color.LIGHTGREY);
             Ok.setStyle("-fx-background-color: #40334a");
             AboutApp.setTextFill(Color.web("#d1cbd6"));
+            Who.setTextFill(Color.web("#d1cbd6"));
         }
         if(Main.profiles_get_theme())
         {
@@ -66,6 +72,7 @@ public class HelpWindow {
             Ok.setTextFill(Color.web("#27203b"));
             Ok.setStyle("-fx-background-color: #b3afc4");
             AboutApp.setTextFill(Color.web("#27203b"));
+            Who.setTextFill(Color.web("#27203b"));
         }
 
 

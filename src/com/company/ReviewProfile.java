@@ -2,6 +2,7 @@ package com.company;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;;
@@ -37,17 +38,20 @@ public class ReviewProfile {
         Button delProf = new Button("Удалить профиль");
         TextField search = new TextField();
         FlowPane groupOfFuncts = new FlowPane(search, changeProf, delProf);
+        groupOfFuncts.setHgap(5);
+        groupOfFuncts.setAlignment(Pos.BOTTOM_RIGHT);
 
 
         tableView.getColumns().addAll(nameColumn,minWorkTimer, minRestTimer);
-        FlowPane root = new FlowPane(tableView, groupOfFuncts);
-        tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-
         for (one_profile G : Main.profiles_get_list())
         {
             ObservableList<one_profile> data = FXCollections.observableArrayList();
 
+
         }
+        //tableView.setItems(); - добавление данных в таблицу
+        FlowPane root = new FlowPane(tableView, groupOfFuncts);
+        tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         Scene sceneReview = new Scene(root,470, 290);
 

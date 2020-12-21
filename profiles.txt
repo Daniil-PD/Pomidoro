@@ -20,3 +20,7 @@ name_profile: аыа
 work_timer: 45
 rest_timer: 15
 
+name_profile: vera
+work_timer: 70
+rest_timer: 10
+
