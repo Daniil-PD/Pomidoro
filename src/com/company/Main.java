@@ -109,6 +109,14 @@ public class Main extends Application {
     public static void stopwatch_stop_mechanism (){Mstopwatch.stop_mechanism();}
     public static long stopwatch_get_past_time (){return Mstopwatch.get_past_time();}
 
+    public static long alarmclock_get_remaining_time (){return Malarmclock.get_remaining_time();}
+    public static void alarmclock_turn_on_off_mechanism(boolean flag){Malarmclock.turn_on_off_mechanism(flag);}
+    public static void alarmclock_setTime_alarm(long time_alarm){Malarmclock.setTime_alarm(time_alarm);}
+    public static void alarmclock_setFlag_power(boolean flag){Malarmclock.setFlag_power(flag);}
+    public static String alarmclock_state_mechanism(){return Malarmclock.state_mechanism();}
+
+
+
 
 
 

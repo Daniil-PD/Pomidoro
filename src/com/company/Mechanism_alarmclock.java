@@ -31,7 +31,7 @@ public class Mechanism_alarmclock extends Thread {
         isActive=false;
     }
 
-    private long get_remaining_time()
+    public long get_remaining_time()
     {
         if (!flag_power) return time_alarm;
         else if (((System.currentTimeMillis()+4*60*60*1000)%(60*60*24*1000))>time_alarm) return time_alarm + 24*60*60*1000 - (System.currentTimeMillis()+4*60*60*1000)%(60*60*24*1000);
@@ -55,7 +55,7 @@ public class Mechanism_alarmclock extends Thread {
     {
         while (isActive) // цикл жизни
         {
-            if ((get_remaining_time() < 10) && flag_power)
+            if ((get_remaining_time() < 100) && flag_power)
             {
                 //оповещение
                 flag_power = false;
