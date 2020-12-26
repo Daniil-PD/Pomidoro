@@ -3,13 +3,9 @@
 * void AddProfileWindow (String title)      : Получение данных нового профиля от пользователя
  */
 package com.company;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -25,8 +21,6 @@ public class AddProfile {
         Label NameLabel = new Label("Название профиля:");
         TextField NameField = new TextField();
         NameField.setMaxSize(100,5);
-        ToggleGroup ThemeButtons = new ToggleGroup();
-
         Button Okbut = new Button("Ок");
 
 
@@ -41,17 +35,11 @@ public class AddProfile {
         ProfileGrid.setHalignment(NameLabel, HPos.RIGHT);
 
 
-
-
-
-
         Label LabelPomodoro = new Label("Помодоро");
         ProfileGrid.add(LabelPomodoro,1,4);
         Label LabelTimer = new Label("Минуты основного таймера:");
         Label LabelRest = new Label("Минуты таймера отдыха:");
         Slider MinuteTimer = new Slider(0,90,45);
-
-
 
         MinuteTimer.setShowTickLabels(true);
         MinuteTimer.setShowTickMarks(true);
@@ -61,16 +49,12 @@ public class AddProfile {
         MinuteTimer.setSnapToTicks(true);//перемещение ползунка строго по целым значениям
         MinuteTimer.setMinSize(250, 50);
 
-
-
         ProfileGrid.add(LabelTimer,0,6);
         ProfileGrid.add(LabelRest,0,8);
         ProfileGrid.setHalignment(LabelTimer, HPos.RIGHT);
         ProfileGrid.setHalignment(LabelRest, HPos.RIGHT);
         MinuteTimer.setLayoutX(190);
         MinuteTimer.setLayoutY(150);
-
-
 
 
         Slider restTimer = new Slider(0,30,15);
@@ -107,8 +91,6 @@ public class AddProfile {
             NameLabel.setTextFill(Color.web("#27203b"));
         }
 
-
-
         one_profile NewPersonProfile = new one_profile();
 
         Okbut.setOnAction(event->{
@@ -119,7 +101,6 @@ public class AddProfile {
             NewPersonProfile.name_profile = NameField.getText();
             Main.profiles_add_profile(NewPersonProfile);
 
-
         });
 
         NewProfileStage.setTitle("Создать профиль");
@@ -129,29 +110,6 @@ public class AddProfile {
         NewProfileStage.setScene(NewprofileScene);
         NewProfileStage.setTitle(title);
         NewProfileStage.showAndWait();
-
-
-
-
-
-
-
-
-
-//        Okbut.setOnAction(event -> {
-//
-//
-//            NewPersonProfile.clear();
-//            NewPersonProfile.work_timer = (int)MinuteTimer.getValue();
-//            NewPersonProfile.rest_timer = (int)restTimer.getValue();
-//            NewPersonProfile.name_profile = NameField.getText();
-//            Main.profiles_add_profile(NewPersonProfile);
-//
-//
-//
-//        });
-
-
 
     }
 }

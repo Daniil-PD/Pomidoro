@@ -433,7 +433,6 @@ public class Output_to_the_screen {
             @Override
             public void handle(ActionEvent actionEvent) {
                 groupOfFuncts.getChildren().clear();
-                SetAlarmTimeWindow.SetTime();
                 ChoiceF(4);
             }
         });
@@ -516,13 +515,19 @@ public class Output_to_the_screen {
 
                     StartBut.setOnAction(event -> Main.pomidor_start_mechanism());
                     StopBut.setOnAction(event -> Main.pomidor_stop_mechanism());
-                    timeButtFuncts.getChildren().addAll(StartBut, StopBut);
+                    Button changeTime = new Button("Установить время");
+                    changeTime.setStyle("-fx-background-color: transparent");
+                    timeButtFuncts.getChildren().addAll(StartBut, StopBut, changeTime);
+                    StartBut.setText("Включить");
+                    StopBut.setText("Выключить");
                     timeButtFuncts.setSpacing(10);
-                    timeButtFuncts.setLayoutX(250);
+                    timeButtFuncts.setLayoutX(170);
                     timeButtFuncts.setLayoutY(255);
                     groupOfFuncts.getChildren().add(timeButtFuncts);
                     StartBut.setTextFill(Color.INDIANRED);
                     StopBut.setTextFill(Color.INDIANRED);
+                    changeTime.setTextFill(Color.INDIANRED);
+                    changeTime.setOnAction(event ->SetAlarmTimeWindow.SetTime());
 
                     break;
             }
