@@ -6,11 +6,11 @@
  *
  * Своства:
  *
- * boolean time_alarm                        : Время срабатывания будильника
+ * boolean time_alarm                        : Время срабатывания будильника от начала дня
  * long flag_power                           : Состояние будильника (сработает/не сработает)
  *
  * Методы:
- * -long get_local_time()                    : Возвращает текущее время в милисекундах (14:30->52 200 000)
+ * -long get_local_time()                    : Возвращает при ВКЛ: время до звонка в милисекундах /// при ВЫКЛ: время будильника
  * -void run()                               : Цикл жизни(работы) будильника
  * -void turn_on_off_mechanism(boolean flag) : Задаем значение переменной flag_power
  * -setTime_alarm(long time_alarm)           : Задаем значение переменной time_alarm
@@ -31,11 +31,17 @@ public class Mechanism_alarmclock extends Thread {
         isActive=false;
     }
 
-    private long get_local_time()
+    private long get_remaining_time()
     {
+        if (!flag_power) return time_alarm;
+        else if (((System.currentTimeMillis()+4*60*60*1000)%(60*60*24*1000))>time_alarm) return time_alarm + 24*60*60*1000 - (System.currentTimeMillis()+4*60*60*1000)%(60*60*24*1000);
+            else return time_alarm - (System.currentTimeMillis()+4*60*60*1000)%(60*60*24*1000);
+
+        //Если будильник не должен сработать то вывести время
+        //Иначе если сейчас 18:00 а звонок в 07:00, то ост время (07:00 + 24ч - 18:00) в милисекундах
+        //Иначе если сейчас 07:00 а звонок в 18:00, то ост время (18:00 - 07:00) в милисекундах
         //System.currentTimeMillis возвращает время пройденное с 01.01.1970 00:00:00 в милисекундах по гринвичу
         // Прибавляем 4 часа из-за часового пояса (GMT+4),а потом выражаем текущее время (xx:xx:xx) в милисекундах
-        return (System.currentTimeMillis()+4*60*60*1000)%(60*60*24*1000);
     }
 
     public Mechanism_alarmclock(long time) //Ининциализация
@@ -49,7 +55,7 @@ public class Mechanism_alarmclock extends Thread {
     {
         while (isActive) // цикл жизни
         {
-            if ((get_local_time() == time_alarm) && flag_power)
+            if ((get_remaining_time() < 10) && flag_power)
             {
                 //оповещение
                 flag_power = false;
@@ -72,6 +78,10 @@ public class Mechanism_alarmclock extends Thread {
     public void setTime_alarm(long time_alarm)
     {
         this.time_alarm = time_alarm;
+    }
+
+    public void setFlag_power(boolean flag_power) {
+        this.flag_power = flag_power;
     }
 
     public String state_mechanism()

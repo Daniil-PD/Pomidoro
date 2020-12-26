@@ -59,7 +59,7 @@ public class Output_to_the_screen {
                 time /= 60;
                 long min = time % 60;
                 time/=60;
-                long hour = time%60;
+                long hour = time % 60;
                 timeText.setText( Long.toString(hour/ 10) + Long.toString(hour% 10) + ":" +
                         Long.toString(min/ 10) + Long.toString(min% 10) + ":" +
                                 Long.toString(sek/ 10) + Long.toString(sek% 10));
@@ -102,12 +102,6 @@ public class Output_to_the_screen {
                                     Long.toString(min/ 10) + Long.toString(min% 10) + ":" +
                                     Long.toString(sek/ 10)+ Long.toString(sek % 10));
                 }
-
-
-
-
-
-
                 break;
             }
 
