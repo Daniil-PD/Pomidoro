@@ -27,6 +27,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 
 import javafx.scene.shape.Rectangle;
@@ -171,6 +172,8 @@ public class Output_to_the_screen {
             @Override
             public void handle(ActionEvent actionEvent) {
                 ReviewProfile.RevProf("Сменить или удалить профиль");
+
+                //ReviewProfile.RevProf("Сменить или удалить профиль");
             }
         });
 
@@ -183,14 +186,16 @@ public class Output_to_the_screen {
         toggleGr = new ToggleGroup(); // создаём группу выбора для тем (галочка д.б. только у 1-ой)
         Lightheme.setToggleGroup(toggleGr);
         Darktheme.setToggleGroup(toggleGr);
-        toggleGr.selectToggle(Darktheme);
+        if (!Main.profiles_get_theme())
+           toggleGr.selectToggle(Darktheme);
+        else
+            toggleGr.selectToggle(Lightheme);
         menuSettings.getItems().addAll(Lightheme, Darktheme); // группируем настройки
         menuBar.getMenus().addAll(menuSettings, menuProfile, menuHelp); // группируем всё меню
         menuBar.setMinWidth(500);
         groupOfAll.getChildren().add(menuBar);
 
 
-        // добавляем меню к актёрам
         VBox Settings = new VBox();
         ToggleButton Pomodoro = new ToggleButton("Помодоро");
         ToggleButton Timer = new ToggleButton("Таймер");
@@ -335,7 +340,7 @@ public class Output_to_the_screen {
         });
         thread.setDaemon(true);
         thread.start();
-        timeText.setX(160);
+        timeText.setX(170);
         timeText.setY(160);
         timeText.setFont(new Font(80));
         groupOfAll.getChildren().add(timeText);
@@ -501,7 +506,7 @@ public class Output_to_the_screen {
                     timeButtFuncts.setSpacing(10);
                     timeButtFuncts.setLayoutX(220);
                     timeButtFuncts.setLayoutY(255);
-                    timeText.setLayoutX(-10);
+                    timeText.setLayoutX(-24);
                     groupOfFuncts.getChildren().add(timeButtFuncts);
                     StartBut.setTextFill(Color.INDIANRED);
                     StopBut.setTextFill(Color.INDIANRED);

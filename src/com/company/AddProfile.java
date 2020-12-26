@@ -12,6 +12,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -62,8 +63,8 @@ public class AddProfile {
 
 
 
-        ProfileGrid.add(LabelTimer,0,5);
-        ProfileGrid.add(LabelRest,0,7);
+        ProfileGrid.add(LabelTimer,0,6);
+        ProfileGrid.add(LabelRest,0,8);
         ProfileGrid.setHalignment(LabelTimer, HPos.RIGHT);
         ProfileGrid.setHalignment(LabelRest, HPos.RIGHT);
         MinuteTimer.setLayoutX(190);
@@ -123,6 +124,7 @@ public class AddProfile {
 
         NewProfileStage.setTitle("Создать профиль");
         Scene NewprofileScene = new Scene(AllWindow, 470, 290);
+        NewProfileStage.getIcons().add(new Image("file:polzovatel.png"));
         NewProfileStage.setResizable(false);
         NewProfileStage.setScene(NewprofileScene);
         NewProfileStage.setTitle(title);

@@ -7,6 +7,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -75,6 +76,7 @@ public class SetAlarmTimeWindow {
 
 
 
+        stage.getIcons().add(new Image("file:ora.png"));
         stage.setScene(sceneHelp);
         stage.setResizable(false);
         stage.showAndWait();
