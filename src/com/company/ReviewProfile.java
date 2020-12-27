@@ -9,6 +9,8 @@ import javafx.scene.control.cell.PropertyValueFactory;;
 import javafx.scene.image.Image;
 import javafx.scene.layout.FlowPane;
 
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -37,9 +39,10 @@ public class ReviewProfile {
         Button changeProf = new Button("Сменить профиль");
         Button delProf = new Button("Удалить профиль");
         TextField search = new TextField();
-        FlowPane groupOfFuncts = new FlowPane(search, changeProf, delProf);
-        groupOfFuncts.setHgap(5);
-        groupOfFuncts.setAlignment(Pos.BOTTOM_RIGHT);
+        HBox groupOfFuncts = new HBox(search, changeProf, delProf);
+        groupOfFuncts.setSpacing(5);
+        groupOfFuncts.setMaxWidth(460);
+        groupOfFuncts.setAlignment(Pos.TOP_RIGHT);
 
 
         tableView.getColumns().addAll(nameColumn,minWorkTimer, minRestTimer);
@@ -49,19 +52,32 @@ public class ReviewProfile {
 
 
         }
-        //tableView.setItems(); - добавление данных в таблицу
-        FlowPane root = new FlowPane(tableView, groupOfFuncts);
+        //tableView.setItems(data);
+        VBox root = new VBox(tableView, groupOfFuncts);
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         Scene sceneReview = new Scene(root,470, 290);
 
-        sceneReview.getStylesheets().add("file:DarkStyle.css");
-        root.setStyle("-fx-background-color: #200f33");
-        changeProf.setTextFill(Color.LIGHTGREY);
-        changeProf.setStyle("-fx-background-color: #40334a");
-        delProf.setTextFill(Color.LIGHTGREY);
-        delProf.setStyle("-fx-background-color: #40334a");
-        nameColumn.setStyle("#d1cbd6");//+-
+        if (!Main.profiles_get_theme())
+        {
+            sceneReview.getStylesheets().add("file:DarkStyle.css");
+            root.setStyle("-fx-background-color: #200f33");
+            changeProf.setTextFill(Color.LIGHTGREY);
+            changeProf.setStyle("-fx-background-color: #40334a");
+            delProf.setTextFill(Color.LIGHTGREY);
+            delProf.setStyle("-fx-background-color: #40334a");
+            nameColumn.setStyle("#d1cbd6");//+-
+        }
+        else
+        {
+            sceneReview.getStylesheets().add("file:LightStyle.css");
+            root.setStyle("-fx-background-color: #f1f0f7");
+            changeProf.setTextFill(Color.web("#27203b"));
+            changeProf.setStyle("-fx-background-color: #c8cadb");
+            delProf.setTextFill(Color.web("#27203b"));
+            delProf.setStyle("-fx-background-color: #c8cadb");
+            nameColumn.setStyle("#403b45");//+-
+        }
 
 
         stageProf.getIcons().add(new Image("file:polzovatel.png"));
