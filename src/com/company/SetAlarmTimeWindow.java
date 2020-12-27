@@ -66,6 +66,8 @@ public class SetAlarmTimeWindow {
         ok.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                Main.alarmclock_setTime_alarm(Hours.getValue()*3600000+Minutes.getValue()*60000);
+                Main.alarmclock_setFlag_power(true);
                 stage.close ();
                 //
             }
@@ -81,4 +83,5 @@ public class SetAlarmTimeWindow {
         stage.setResizable(false);
         stage.showAndWait();
     }
+
 }

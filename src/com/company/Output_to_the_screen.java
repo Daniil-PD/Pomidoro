@@ -59,7 +59,7 @@ public class Output_to_the_screen {
                 time /= 60;
                 long min = time % 60;
                 time/=60;
-                long hour = time%60;
+                long hour = time % 60;
                 timeText.setText( Long.toString(hour/ 10) + Long.toString(hour% 10) + ":" +
                         Long.toString(min/ 10) + Long.toString(min% 10) + ":" +
                                 Long.toString(sek/ 10) + Long.toString(sek% 10));
@@ -102,24 +102,33 @@ public class Output_to_the_screen {
                                     Long.toString(min/ 10) + Long.toString(min% 10) + ":" +
                                     Long.toString(sek/ 10)+ Long.toString(sek % 10));
                 }
-
-
-
-
-
-
                 break;
             }
 
             case 4:
-                timeText.setText(
-                        Long.toString((Main.pomidoro_get_remaining_time() / (1000 * 3600)) % 60) + ":" +
-                        Long.toString((Main.pomidoro_get_remaining_time() / (1000*60)) % 60) +":"+
-                        Long.toString((Main.pomidoro_get_remaining_time() / 1000) % 60));
+            {
+                long time  = Main.alarmclock_get_remaining_time() / 1000;
+                long sek = time % 60;
+                time /= 60;
+                long min = time % 60;
+                time /= 60;
+                long hour = time % 24;
+                if (Main.alarmclock_state_mechanism() == "turn_on")
+                {
+                    timeText.setText(
+                            Long.toString(hour/ 10) + Long.toString(hour% 10) + ":" +
+                                    Long.toString(min/ 10) + Long.toString(min% 10) + ":" +
+                                    Long.toString(sek/ 10)+ Long.toString(sek % 10));
+                }
+                else
+                {
+                    timeText.setText("  "+
+                            Long.toString(hour/ 10) + Long.toString(hour% 10) + ":" +
+                                    Long.toString(min/ 10) + Long.toString(min% 10));
+                }
 
                 break;
-
-
+            }
             //Long.toString((Main.pomidoro_get_remaining_time()) % 1000));
         }
     }
@@ -513,8 +522,8 @@ public class Output_to_the_screen {
                     break;
                 case 4:
 
-                    StartBut.setOnAction(event -> Main.pomidor_start_mechanism());
-                    StopBut.setOnAction(event -> Main.pomidor_stop_mechanism());
+                    StartBut.setOnAction(event -> Main.alarmclock_setFlag_power(true));
+                    StopBut.setOnAction(event -> Main.alarmclock_turn_on_off_mechanism(false));
                     Button changeTime = new Button("Установить время");
                     changeTime.setStyle("-fx-background-color: transparent");
                     timeButtFuncts.getChildren().addAll(StartBut, StopBut, changeTime);
@@ -528,7 +537,6 @@ public class Output_to_the_screen {
                     StopBut.setTextFill(Color.INDIANRED);
                     changeTime.setTextFill(Color.INDIANRED);
                     changeTime.setOnAction(event ->SetAlarmTimeWindow.SetTime());
-
                     break;
             }
         } catch (Exception e) {
