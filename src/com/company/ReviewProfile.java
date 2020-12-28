@@ -51,9 +51,9 @@ public class ReviewProfile {
             ObservableList<one_profile> data = FXCollections.observableArrayList(G);
             tableView.setItems(data);
 
-
         }
         VBox root = new VBox(tableView, groupOfFuncts);
+        root.setSpacing(5);
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         Scene sceneReview = new Scene(root,470, 290);

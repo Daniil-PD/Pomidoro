@@ -6,12 +6,14 @@ package com.company;
 
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class AddProfile {
@@ -30,12 +32,11 @@ public class AddProfile {
         ProfileGrid.setVgap(15);
         ProfileGrid.add(NameLabel,0,1);
         ProfileGrid.add(NameField,1,1);
-
-        ProfileGrid.add(Okbut,2, 1);
         ProfileGrid.setHalignment(NameLabel, HPos.RIGHT);
 
 
         Label LabelPomodoro = new Label("Помодоро");
+        LabelPomodoro.setFont(new Font("Arial", 20));
         ProfileGrid.add(LabelPomodoro,1,4);
         Label LabelTimer = new Label("Минуты основного таймера:");
         Label LabelRest = new Label("Минуты таймера отдыха:");
@@ -69,7 +70,9 @@ public class AddProfile {
         restTimer.setLayoutX(190);
         restTimer.setLayoutY(200);
         Pane AllWindow = new Pane();
-        AllWindow.getChildren().addAll(ProfileGrid,restTimer,MinuteTimer);
+        Okbut.setLayoutX(430);
+        Okbut.setLayoutY(255);
+        AllWindow.getChildren().addAll(ProfileGrid,restTimer,MinuteTimer, Okbut);
         if(!Main.profiles_get_theme())
         {
             AllWindow.setStyle("-fx-background-color: #200f33");
