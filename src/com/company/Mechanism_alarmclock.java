@@ -55,7 +55,7 @@ public class Mechanism_alarmclock extends Thread {
     {
         while (isActive) // цикл жизни
         {
-            if ((get_remaining_time() < 100) && flag_power)
+            if ((get_remaining_time () < 100) && flag_power)
             {
                 //оповещение
                 flag_power = false;

@@ -65,6 +65,8 @@ public class one_profile {
         //Arrays.equals(color_profile, simpson.color_profile);
     }
 
-
+    public String getname_profile() {
+        return name_profile;
+    }
 
 }

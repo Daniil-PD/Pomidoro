@@ -76,6 +76,9 @@ public class Main extends Application {
     }
 
 
+    public static one_profile get_index_profile(int i){
+        return profiles.index(i);
+    }
     public static one_profile get_now_profile(){
         return now_profile_pomidoro;
     }
