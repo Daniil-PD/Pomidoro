@@ -46,15 +46,8 @@ public class ReviewProfile {
 
 
         tableView.getColumns().addAll(nameColumn,minWorkTimer, minRestTimer);
-        ObservableList<one_profile> data = FXCollections.observableArrayList(Main.get_now_profile());
-        //for (one_profile G : Main.profiles_get_list())
-        //{
-            //data.add(G);
-                    //FXCollections.observableArrayList(Main.profiles_get_list());
+        ObservableList<one_profile> data = FXCollections.observableArrayList(Main.profiles_get_list());
 
-
-
-        //}
         tableView.setItems(data);
         VBox root = new VBox(tableView, groupOfFuncts);
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);

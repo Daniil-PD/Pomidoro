@@ -65,8 +65,17 @@ public class one_profile {
         //Arrays.equals(color_profile, simpson.color_profile);
     }
 
-    public String getname_profile() {
+    public String getName_profile() {
         return name_profile;
     }
+    public void setName_profile(String g) { this.name_profile = g;}
+    public int getWork_timer() {
+        return work_timer;
+    }
+    public void setWork_timer(int g) { this.work_timer = g;}
+    public int getRest_timer() {
+        return rest_timer;
+    }
+    public void setRest_timer(int g) { this.rest_timer = g;}
 
 }
