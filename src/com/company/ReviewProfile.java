@@ -51,13 +51,11 @@ public class ReviewProfile {
 
         tableView.getColumns().addAll(nameColumn,minWorkTimer, minRestTimer);
         ObservableList<one_profile> data = FXCollections.observableArrayList(Main.profiles_get_list());
-
-        ScrollPane verticalBar = new ScrollPane();
-        verticalBar.setContent(tableView);
         tableView.setItems(data);
-        VBox root = new VBox(tableView,verticalBar, groupOfFuncts);
-        verticalBar.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
-        verticalBar.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+
+
+        VBox root = new VBox(tableView, groupOfFuncts);
+
         root.setSpacing(5);
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
