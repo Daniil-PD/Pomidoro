@@ -73,8 +73,10 @@ public class AddProfile {
         Okbut.setLayoutX(430);
         Okbut.setLayoutY(255);
         AllWindow.getChildren().addAll(ProfileGrid,restTimer,MinuteTimer, Okbut);
+        Scene NewprofileScene = new Scene(AllWindow, 470, 290);
         if(!Main.profiles_get_theme())
         {
+            NewprofileScene.getStylesheets().add("file:DarkStyle.css");
             AllWindow.setStyle("-fx-background-color: #200f33");
             Okbut.setTextFill(Color.LIGHTGREY);
             Okbut.setStyle("-fx-background-color: #40334a");
@@ -85,6 +87,7 @@ public class AddProfile {
         }
         if(Main.profiles_get_theme())
         {
+            NewprofileScene.getStylesheets().add("file:LightStyle.css");
             AllWindow.setStyle("-fx-background-color: #f1f0f7");
             Okbut.setTextFill(Color.web("#27203b"));
             Okbut.setStyle("-fx-background-color: #b3afc4");
@@ -107,7 +110,6 @@ public class AddProfile {
         });
 
         NewProfileStage.setTitle("Создать профиль");
-        Scene NewprofileScene = new Scene(AllWindow, 470, 290);
         NewProfileStage.getIcons().add(new Image("file:polzovatel.png"));
         NewProfileStage.setResizable(false);
         NewProfileStage.setScene(NewprofileScene);
